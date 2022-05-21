@@ -1,0 +1,44 @@
+.navbar {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 60px; 
+    justify-content: center;
+}
+.navbar-app-container {
+    display: flex;
+    align-items: center;
+    width: var(--app-max-width);
+}
+
+/* Logo container css */
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.fitbook-logo {
+    width: 3rem;
+    height: 3rem;
+    object-fit: contain;
+    margin-bottom: 2px;
+}
+.logo-text {
+    margin-left: -5px;
+}
+.logo-sub-text {
+    color: var(--primary-text-color);
+    font-size: 1.5rem;
+}
+
+
+/* Logo container css */
+
+
+/* searchbar container css */
+/* searchbar container css */
+
+
+/* icons container css */
+/* icons container css */
