@@ -1,5 +1,6 @@
 import React from "react";
 import Fitbook from "../../assets/images/fitBook.svg";
+import PrimaryButton from "../buttons/PrimaryButton";
 import "./navbar.css";
 
 const Navbar = () => {
@@ -15,9 +16,22 @@ const Navbar = () => {
           </h1>
         </div>
         <div className="searchbar-container">
-          <input type="search" placeholder="search" className="nav-search" />
+          <input
+            type="search"
+            placeholder="Enter search text..."
+            className="nav-search"
+          />
         </div>
-        <div className="icons-container"></div>
+        <div className="icons-container">
+          <PrimaryButton buttonText="Login" />
+        </div>
+      </div>
+      <div className="mobile-searchbar-container">
+        <input
+          type="search"
+          placeholder="Enter search text..."
+          className="nav-search"
+        />
       </div>
     </div>
   );
