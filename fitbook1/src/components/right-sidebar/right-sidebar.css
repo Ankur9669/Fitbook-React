@@ -1,0 +1,17 @@
+.right-sidebar{
+    grid-column: 3 / 4;
+    height: 90vh;
+    border-left: 2px solid var(--primary-color);
+    margin-top: 70px;
+}
+.right-sidebar-heading {
+    margin: 2rem 1rem 1rem 1rem;
+    font-size: 1.3rem;
+}
+.right-sidebar-users {
+    padding: 0.3rem 0;
+    background-color: var(--color-white);
+    width: fit-content;
+    margin: 1rem;
+}
+

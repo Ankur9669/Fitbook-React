@@ -3,8 +3,8 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    grid-column: 1 / 2;
     margin-top: 70px;
-    width: 200px;
     min-height: 90vh;
     background-color: var(--background-color);
     border-right: 2px solid var(--primary-color);
