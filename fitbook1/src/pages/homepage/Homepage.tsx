@@ -5,7 +5,7 @@ const Homepage = () => {
   return (
     <>
       <LeftSidebar />
-      <div></div>
+      <div> </div>
       <RightSidebar />
     </>
   );
