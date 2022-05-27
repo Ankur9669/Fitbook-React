@@ -1,4 +1,5 @@
 import MobileFooter from "../../components/mobile-footer/MobileFooter";
+import FloatingButton from "./floatingbutton/FloatingButton";
 import { LeftSideBar, RightSidebar, CenterContent } from "./index";
 
 const Homepage = () => {
@@ -8,6 +9,7 @@ const Homepage = () => {
       <CenterContent />
       <RightSidebar />
       <MobileFooter />
+      <FloatingButton />
     </>
   );
 };
