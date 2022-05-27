@@ -1,0 +1,23 @@
+.button-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 2px;
+    font-size: 1.3rem;
+}
+.button-primary{
+    background-color: var(--primary-color);
+    color: var(--secondary-text-color);
+}
+.button-primary:hover{
+    background-color: var(--primary-color-dark);
+    border: 2px solid var(--primary-color);
+}
+.button-outline-secondary{
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-text-color);
+}
+.button-outline-secondary:hover{
+    background-color: var(--primary-color);
+}
