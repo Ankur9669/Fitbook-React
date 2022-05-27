@@ -1,0 +1,57 @@
+.post {
+    background-color: var(--color-white);
+    margin: 2rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+}
+.post-avatar-content-container {
+    display: flex;
+    padding: 1rem 0;
+}
+.post-avatar-container {
+    width: 45px;
+    height: 45px;
+    margin: 0 0.5rem;
+}
+.post-content-container {
+    position: relative;
+    margin-right: 0.5rem;
+    width: 100%;
+}
+.post-header {
+    font-size: 1.1rem;
+}
+.post-content {
+    font-size: 1rem;
+    margin-top: 1rem;
+    width: 90%;
+}
+.post-icons {
+    font-size: 2rem;
+    cursor: pointer;
+}
+.post-more-icon {
+    position: absolute;
+    font-size: 2rem;
+    right: 0.5rem;
+    top: 0rem;
+    cursor: pointer;
+}
+.post-more-icon:hover {
+    color: var(--primary-color);
+}
+.post-buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 1rem;
+}
+.post-button-container {
+    display: flex;
+    align-items: center;
+}
+.post-button-text {
+    margin-left: 0.3rem;
+}
+.post-button:hover {
+    color: var(--primary-color);
+}

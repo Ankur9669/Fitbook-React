@@ -1,13 +1,16 @@
+.left-sidebar-container {
+    border-right: 2px solid var(--primary-color);
+}
 .left-sidebar {
+    position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     grid-column: 1 / 2;
     margin-top: 70px;
-    min-height: 90vh;
+    height: 90vh;
     background-color: var(--background-color);
-    border-right: 2px solid var(--primary-color);
 }
 .left-sidebar-icons{
     margin-top: 1rem;
@@ -34,7 +37,7 @@
     color: var(--secondary-text-color);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
     .left-sidebar{
         display: none;
     }

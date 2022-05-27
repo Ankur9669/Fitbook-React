@@ -15,9 +15,17 @@ body {
   --primary-text-color: #323232;
   --secondary-text-color: #ffffff;
   --primary-color: #2d3092;
+  --dark-primary-color: #272a7d; 
   --background-color: #f7fafb;
+  --background-color-dark:#e9ebec;
   --color-black: #000000;
   --color-white: #ffffff;
+  --color-yellow: #ffc83d;
+  --color-gray: #808080;
+
+  --z-index-highest: 1000;
+  --z-index-medium: 500;
+  --z-index-low: 10;
 
 }
 .primary-text-color {

@@ -6,6 +6,7 @@ type PrimaryButtonProps = {
   iconLeft?: string;
   iconRight?: string;
   className?: string;
+  isDisabled?: boolean;
 };
 
 // Here onClick prop is a function which defines what to do on a button click
@@ -16,11 +17,15 @@ const PrimaryButton = ({
   iconLeft = "",
   iconRight = "",
   className = "",
+  isDisabled = false,
 }: PrimaryButtonProps) => {
   return (
     <button
-      className={`button button-primary flex-center-horizontal-vertical ${className}`}
+      className={`button button-primary flex-center-horizontal-vertical ${className} ${
+        isDisabled && "button-primary-disabled"
+      }`}
       onClick={onClick}
+      disabled={isDisabled}
     >
       {iconLeft !== "" ? iconLeft : <></>}
       {buttonText}

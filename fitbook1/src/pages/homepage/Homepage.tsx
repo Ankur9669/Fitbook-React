@@ -1,12 +1,13 @@
-import LeftSidebar from "../../components/left-sidebar/LeftSidebar";
-import RightSidebar from "../../components/right-sidebar/RightSidebar";
+import MobileFooter from "../../components/mobile-footer/MobileFooter";
+import { LeftSideBar, RightSidebar, CenterContent } from "./index";
 
 const Homepage = () => {
   return (
     <>
-      <LeftSidebar />
-      <div> </div>
+      <LeftSideBar />
+      <CenterContent />
       <RightSidebar />
+      <MobileFooter />
     </>
   );
 };
