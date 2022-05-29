@@ -1,0 +1,35 @@
+.loader-container{
+  position: relative;
+  width: fit-content;
+  margin: auto;
+}
+.loader-container h1 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.loader-container .logo-text {
+  font-size: 2rem;
+}
+.loader-container .logo-sub-text {
+  font-size: 2rem;
+}
+.loader-container h1::before {
+  position: absolute;
+  left: 0px;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  background-color: var(--background-color);
+  animation: move 3s linear infinite;
+  content: "";
+}
+@keyframes move {
+    0%,
+    100% {
+      left: -10px;
+    }
+    50% {
+      left: calc(100% - 5px);
+    }
+  }

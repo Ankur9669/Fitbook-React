@@ -22,8 +22,15 @@ const CreatePost = () => {
   const onEmojiClick = (event: any, emojiObject: any) => {
     setPostText((postText) => postText + emojiObject.emoji);
   };
+
+  // TODO change type any
+  const handleCreatePostClick = (e: any) => {};
+
+  const stopPropagation = (e: any) => {
+    e.stopPropagation();
+  };
   return (
-    <div className="create-post">
+    <div className="create-post" onClick={stopPropagation}>
       <div className="create-post-avatar-textarea-container">
         <div className="create-post-avatar-container">
           <img
@@ -56,7 +63,11 @@ const CreatePost = () => {
         )}
         <div className="create-post-footer-button-container">
           <p className="remaining-words">{remainingWords}</p>
-          <PrimaryButton buttonText="post" isDisabled={isPostDisable} />
+          <PrimaryButton
+            buttonText="post"
+            isDisabled={isPostDisable}
+            onClick={handleCreatePostClick}
+          />
         </div>
       </div>
     </div>

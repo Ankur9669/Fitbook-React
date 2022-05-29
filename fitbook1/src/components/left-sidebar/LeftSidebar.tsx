@@ -7,9 +7,14 @@ import {
   MdExplore,
   RiMessage2Fill,
 } from "./index";
+import { LeftSidebarProps } from "./LeftSidebarProps";
 import "./left-sidebar.css";
 
-const LeftSidebar = () => {
+const LeftSidebar = (props: LeftSidebarProps) => {
+  const { setModalOpen } = props;
+  const handleCreatePostClick = () => {
+    setModalOpen(true);
+  };
   return (
     <div className="left-sidebar-container">
       <div className="left-sidebar">
@@ -36,7 +41,10 @@ const LeftSidebar = () => {
           </div>
         </div>
         <div className="left-sidebar-footer">
-          <PrimaryButton buttonText="Create New Post" />
+          <PrimaryButton
+            buttonText="Create New Post"
+            onClick={handleCreatePostClick}
+          />
         </div>
       </div>
     </div>
