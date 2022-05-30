@@ -12,21 +12,15 @@
 }
 .right-sidebar-content {
     padding: 0.3rem 0;
-    background-color: var(--color-white);
+    /* background-color: var(--background-color); */
     width: fit-content;
     margin: 1rem;
 }
-.filter-posts {
-    font-family: poppins;
-    width: 100%;
-    height: fit-content;
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    margin: 1rem 0 0 0;
-    border: 2px solid var(--primary-color);
+.sort-content {
     background-color: var(--background-color);
+}
+.users-content {
+    background-color: var(--color-white);
 }
 
 @media only screen and (max-width: 992px) {

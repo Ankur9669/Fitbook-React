@@ -1,6 +1,6 @@
 import React from "react";
 import { PostModalProps } from "./PostModalProps";
-import { AiFillEdit, AiFillDelete } from "../../../../../../assets/icons/icons";
+import { AiFillEdit, AiFillDelete } from "../../../../assets/icons/icons";
 import "./postmodal.css";
 
 const PostModal = (props: PostModalProps) => {

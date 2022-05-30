@@ -1,3 +1,3 @@
 export type LeftSidebarProps = {
-  setModalOpen: any;
+  setModalOpen?: any;
 };

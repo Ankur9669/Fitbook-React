@@ -6,8 +6,10 @@ import {
   BsFillBookmarkFill,
   MdExplore,
   RiMessage2Fill,
+  NavLink,
 } from "./index";
 import { LeftSidebarProps } from "./LeftSidebarProps";
+
 import "./left-sidebar.css";
 
 const LeftSidebar = (props: LeftSidebarProps) => {
@@ -15,30 +17,37 @@ const LeftSidebar = (props: LeftSidebarProps) => {
   const handleCreatePostClick = () => {
     setModalOpen(true);
   };
+  const findActive = ({ isActive }: any) => {
+    return isActive && "active";
+  };
   return (
     <div className="left-sidebar-container">
       <div className="left-sidebar">
         <div className="left-sidebar-icons">
-          <div className="sidebar-icon active">
+          <NavLink to="/" className={`sidebar-icon ${findActive}`}>
             <AiFillHome className="sidebar-icon-icon" />
             <h1 className="sidebar-icon-text">Home</h1>
-          </div>
-          <div className="sidebar-icon">
+          </NavLink>
+
+          <NavLink to="/explore" className={`sidebar-icon ${findActive}`}>
             <MdExplore className="sidebar-icon-icon" />
             <h1 className="sidebar-icon-text">Explore</h1>
-          </div>
-          <div className="sidebar-icon">
+          </NavLink>
+
+          <NavLink to="/bookmarks" className={`sidebar-icon ${findActive}`}>
             <BsFillBookmarkFill className="sidebar-icon-icon" />
             <h1 className="sidebar-icon-text">Bookmarks</h1>
-          </div>
-          <div className="sidebar-icon">
+          </NavLink>
+
+          <NavLink to="/profile" className={`sidebar-icon ${findActive}`}>
             <CgProfile className="sidebar-icon-icon" />
             <h1 className="sidebar-icon-text">Profile</h1>
-          </div>
-          <div className="sidebar-icon">
+          </NavLink>
+
+          <NavLink to="/messages" className={`sidebar-icon ${findActive}`}>
             <RiMessage2Fill className="sidebar-icon-icon" />
             <h1 className="sidebar-icon-text">Messages</h1>
-          </div>
+          </NavLink>
         </div>
         <div className="left-sidebar-footer">
           <PrimaryButton

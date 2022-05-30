@@ -1,5 +1,5 @@
 import React from "react";
-import { GrAdd, IoAddOutline } from "../../../assets/icons/icons";
+import { GrAdd, IoAddOutline } from "../../assets/icons/icons";
 import "./floatingbutton.css";
 import { FloatingButtonProps } from "./FloatingButtonProps";
 const FloatingButton = (props: FloatingButtonProps) => {

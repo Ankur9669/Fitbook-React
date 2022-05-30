@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import CreatePost from "../centercontent/createpost/CreatePost";
+import CreatePost from "../../pages/homepage/centercontent/createpost/CreatePost";
 import "./create-post-modal.css";
 import { CreatePostModalProps } from "./CreatePostModalProps";
 
