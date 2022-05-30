@@ -3,8 +3,8 @@ import "./button.css";
 type PrimaryButtonProps = {
   buttonText?: string;
   onClick?: any;
-  iconLeft?: string;
-  iconRight?: string;
+  iconLeft?: any;
+  iconRight?: any;
   className?: string;
   isDisabled?: boolean;
 };
@@ -27,9 +27,14 @@ const PrimaryButton = ({
       onClick={onClick}
       disabled={isDisabled}
     >
-      {iconLeft !== "" ? iconLeft : <></>}
+      {iconLeft !== "" ? (
+        <span className="button-icon">{iconLeft()}</span>
+      ) : (
+        <></>
+      )}
+
       {buttonText}
-      {iconRight !== "" ? iconRight : <></>}
+      {iconRight !== "" ? iconRight() : <></>}
     </button>
   );
 };

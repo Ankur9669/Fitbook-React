@@ -1,9 +1,12 @@
 .button-icon{
     display: flex;
+    margin-right: 5px;
+    font-size: 1.3rem;
+}
+.button {
+    display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 2px;
-    font-size: 1.3rem;
 }
 .button-primary{
     background-color: var(--primary-color);

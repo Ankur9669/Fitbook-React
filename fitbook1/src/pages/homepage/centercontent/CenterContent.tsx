@@ -8,6 +8,7 @@ const CenterContent = () => {
     <div className="center-content">
       {/* <Loader /> */}
       <CreatePost />
+
       <Posts />
     </div>
   );
