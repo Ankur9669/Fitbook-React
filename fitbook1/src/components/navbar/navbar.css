@@ -5,6 +5,7 @@
     height: 70px; 
     justify-content: center;
     flex-direction: column;
+    background-color: var(--background-color-dark);
 }
 .navbar-app-container {
     display: flex;

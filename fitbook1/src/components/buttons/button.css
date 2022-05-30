@@ -13,6 +13,14 @@
     background-color: var(--primary-color-dark);
     border: 2px solid var(--primary-color);
 }
+.button-primary-disabled{
+    color: var(--color-gray);
+    background-color: var(--primary-color-dark);
+}
+.button-primary-disabled:hover{
+    color: var(--color-gray);
+    background-color: var(--primary-color-dark);
+}
 .button-outline-secondary{
     background-color: transparent;
     border: 2px solid var(--primary-color);

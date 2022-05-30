@@ -7,3 +7,14 @@
   grid-template-columns: 200px auto 300px;
   width: var(--app-max-width);
 }
+
+@media only screen and (max-width: 992px) {
+  .app-container {
+    grid-template-columns: 200px auto;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .app-container {
+    grid-template-columns: auto;
+  }
+}
