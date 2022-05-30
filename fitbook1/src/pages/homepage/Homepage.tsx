@@ -1,7 +1,11 @@
-import MobileFooter from "../../components/mobile-footer/MobileFooter";
-import CreatePostModal from "./createpostmodal/CreatePostModal";
-import FloatingButton from "./floatingbutton/FloatingButton";
-import { LeftSideBar, RightSidebar, CenterContent } from "./index";
+import {
+  LeftSideBar,
+  RightSidebar,
+  CenterContent,
+  MobileFooter,
+  CreatePostModal,
+  FloatingButton,
+} from "./index";
 import { useState } from "react";
 
 const Homepage = () => {
