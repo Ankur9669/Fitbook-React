@@ -6,6 +6,8 @@ import {
   BsBookmark,
   FiMoreHorizontal,
 } from "../../../../../assets/icons/icons";
+
+import PostModal from "./postmodal/PostModal";
 export {
   Avatar,
   AiFillHeart,
@@ -13,4 +15,5 @@ export {
   BiCommentDetail,
   BsBookmark,
   FiMoreHorizontal,
+  PostModal,
 };

@@ -1,4 +1,10 @@
-import { AiFillHome, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import {
+  AiFillHome,
+  AiOutlineHeart,
+  AiFillHeart,
+  AiFillEdit,
+  AiFillDelete,
+} from "react-icons/ai";
 import { MdExplore } from "react-icons/md";
 import { BsFillBookmarkFill, BsBookmark } from "react-icons/bs";
 import { CgProfile, CgTrending } from "react-icons/cg";
@@ -14,6 +20,8 @@ export {
   AiFillHome,
   AiFillHeart,
   AiOutlineHeart,
+  AiFillEdit,
+  AiFillDelete,
   MdExplore,
   BsFillBookmarkFill,
   BsBookmark,

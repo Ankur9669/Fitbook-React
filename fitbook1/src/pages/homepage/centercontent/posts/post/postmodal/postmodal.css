@@ -1,0 +1,26 @@
+.post-modal {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 1.4rem;
+    right: 0.6rem;
+    width: 8rem;
+    background-color: var(--background-color);
+    border-radius: 5px;
+}
+.post-modal-button {
+    font-family: poppins;
+    font-size: 1rem;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--primary-color);
+    cursor: pointer;
+}
+.post-modal-icon {
+    margin-left: 10px;
+}
+.post-modal-button:hover {
+    background-color: var(--background-color-dark);
+}

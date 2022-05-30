@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./post.css";
 import {
   AiFillHeart,
@@ -7,11 +7,18 @@ import {
   BsBookmark,
   FiMoreHorizontal,
   Avatar,
+  PostModal,
 } from "./index";
 import { PostProps } from "./PostProps";
 
 const Post = (props: PostProps) => {
   const { userName, postContent, postComments, postLikes } = props;
+  const [isPostModalOpen, setPostModalOpen] = useState(false);
+
+  // TODO change type any
+  const handleMoreClickIcon = () => {
+    setPostModalOpen((isPostModalOpen) => !isPostModalOpen);
+  };
   return (
     <div className="post">
       <div className="post-avatar-content-container">
@@ -26,7 +33,11 @@ const Post = (props: PostProps) => {
         <div className="post-content-container">
           <h3 className="post-header">{userName}</h3>
           <p className="post-content">{postContent}</p>
-          <FiMoreHorizontal className="post-more-icon" />
+          <FiMoreHorizontal
+            className="post-more-icon"
+            onClick={handleMoreClickIcon}
+          />
+          {isPostModalOpen && <PostModal setPostModalOpen={setPostModalOpen} />}
         </div>
       </div>
       <div className="post-buttons-container">
