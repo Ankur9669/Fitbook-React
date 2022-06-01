@@ -22,8 +22,8 @@
     cursor: pointer;
     margin: 1rem 0.5rem;
     border-radius: 5px;
+    padding: 0 0.5rem;
 }
-
 .sidebar-icon:hover {
     color: var(--primary-color);
 }

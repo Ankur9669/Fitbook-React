@@ -4,6 +4,7 @@ import CreatePost from "./createpost/CreatePost";
 import Posts from "../../components/posts/Posts";
 import { useLocation } from "react-router";
 import { MdPendingActions } from "react-icons/md";
+import EmptyBookmark from "./emptybookmark/EmptyBookmark";
 
 const CenterContent = () => {
   const location = useLocation();
@@ -12,6 +13,7 @@ const CenterContent = () => {
     <div className="center-content">
       {/* <Loader /> */}
       {pathName === "/" && <CreatePost />}
+      {pathName === "/bookmarks" && <EmptyBookmark />}
       <Posts />
     </div>
   );
