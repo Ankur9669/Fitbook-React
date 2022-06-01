@@ -5,6 +5,7 @@ import Posts from "../../components/posts/Posts";
 import { useLocation } from "react-router";
 import { MdPendingActions } from "react-icons/md";
 import EmptyBookmark from "./emptybookmark/EmptyBookmark";
+import Profile from "./profile/Profile";
 
 const CenterContent = () => {
   const location = useLocation();
@@ -14,6 +15,7 @@ const CenterContent = () => {
       {/* <Loader /> */}
       {pathName === "/" && <CreatePost />}
       {pathName === "/bookmarks" && <EmptyBookmark />}
+      {pathName === "/profile" && <Profile />}
       <Posts />
     </div>
   );
