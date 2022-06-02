@@ -1,9 +1,8 @@
 .center-content {
-    margin-top: 4.3rem;
+    margin-top: 70px;
 }
-
 @media only screen and (max-width: 600px) {
     .center-content {
-        margin-top: 10rem;
+        margin-top: 125px;
     }
 }

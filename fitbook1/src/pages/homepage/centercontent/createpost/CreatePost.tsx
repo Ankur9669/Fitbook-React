@@ -8,7 +8,6 @@ const CreatePost = () => {
   const [isEmojiPickerOpen, setEmojiPickerOpen] = useState(false);
   const [postText, setPostText] = useState("");
 
-  // TODO change event
   const onChangeText = (e: any) => {
     let currentText = e.target.value;
     setPostText(currentText);
@@ -20,20 +19,11 @@ const CreatePost = () => {
     }
   };
 
-  // TODO change event
   const onEmojiClick = (event: any, emojiObject: any) => {
     setPostText((postText) => postText + emojiObject.emoji);
   };
-
-  // TODO change type any
-  const handleCreatePostClick = (e: any) => {};
-
-  // TODO change event
-  const stopPropagation = (e: any) => {
-    e.stopPropagation();
-  };
   return (
-    <div className="create-post" onClick={stopPropagation}>
+    <div className="create-post">
       <div className="create-post-avatar-textarea-container">
         <div className="create-post-avatar-container">
           <img
@@ -60,18 +50,13 @@ const CreatePost = () => {
               position: "absolute",
               bottom: "-300px",
               left: "8px",
-              zIndex: "var(--z-index-highest)",
             }}
             onEmojiClick={onEmojiClick}
           />
         )}
         <div className="create-post-footer-button-container">
           <p className="remaining-words">{remainingWords}</p>
-          <PrimaryButton
-            buttonText="post"
-            isDisabled={isPostDisable}
-            onClick={handleCreatePostClick}
-          />
+          <PrimaryButton buttonText="post" isDisabled={isPostDisable} />
         </div>
       </div>
     </div>

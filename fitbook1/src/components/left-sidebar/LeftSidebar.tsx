@@ -9,7 +9,6 @@ import {
   NavLink,
 } from "./index";
 import { LeftSidebarProps } from "./LeftSidebarProps";
-
 import "./left-sidebar.css";
 
 const LeftSidebar = (props: LeftSidebarProps) => {
