@@ -1,11 +1,13 @@
 import Loader from "../../components/loader/Loader";
 import "./centercontent.css";
-import CreatePost from "./createpost/CreatePost";
-import Posts from "../../components/posts/Posts";
-import { useLocation } from "react-router";
-import { MdPendingActions } from "react-icons/md";
-import EmptyBookmark from "./emptybookmark/EmptyBookmark";
-import Profile from "./profile/Profile";
+import {
+  CreatePost,
+  Posts,
+  useLocation,
+  MdPendingActions,
+  EmptyBookmark,
+  Profile,
+} from "./index";
 
 const CenterContent = () => {
   const location = useLocation();

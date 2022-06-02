@@ -1,7 +1,5 @@
-import React from "react";
 import "./profile.css";
-import Avatar from "../../../assets/images/avatar.svg";
-import PrimaryButton from "../../buttons/PrimaryButton";
+import { Avatar, PrimaryButton } from "./index";
 
 const Profile = () => {
   return (
