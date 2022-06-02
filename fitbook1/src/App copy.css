@@ -1,9 +1,0 @@
-.App {
-  display: flex;
-  justify-content: center;
-}
-.app-container{
-  display: grid;
-  grid-template-columns: 200px auto 300px;
-  width: var(--app-max-width);
-}

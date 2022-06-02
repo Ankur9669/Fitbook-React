@@ -1,0 +1,23 @@
+.floating-button {
+    display: none;
+    position: fixed;
+    bottom: 6rem;
+    right: 1.5rem;
+    background-color: var(--primary-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: var(--color-white);
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.floating-button:hover {
+    background-color: var(--primary-color-dark);
+}
+@media only screen and (max-width: 768px) {
+    .floating-button {
+        display: flex;
+    }
+    
+}

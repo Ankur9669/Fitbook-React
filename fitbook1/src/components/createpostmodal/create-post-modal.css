@@ -1,0 +1,17 @@
+.modal-background {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: var(--z-index-highest);
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+.create-post-modal{
+    max-width: 700px;
+    width: 100%;
+    margin-top: 70px;
+}

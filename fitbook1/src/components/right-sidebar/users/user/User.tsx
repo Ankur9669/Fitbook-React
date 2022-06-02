@@ -1,5 +1,5 @@
-import Avatar from "../../assets/images/avatar.svg";
-import { IoPersonAddSharp } from "../../assets/icons/icons";
+import Avatar from "../../../../assets/images/avatar.svg";
+import { IoPersonAddSharp } from "../../../../assets/icons/icons";
 import "./user.css";
 
 type UserProps = {
