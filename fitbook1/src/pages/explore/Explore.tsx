@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import LeftSidebar from "../../components/left-sidebar/LeftSidebar";
-import RightSidebar from "../../components/right-sidebar/RightSidebar";
-import CreatePostModal from "../../components/createpostmodal/CreatePostModal";
-import CenterContent from "../../components/centercontent/CenterContent";
+import {
+  LeftSidebar,
+  RightSidebar,
+  CreatePostModal,
+  CenterContent,
+} from "./index";
 
 const Explore = () => {
   const [isModalOpen, setModalOpen] = useState(false);

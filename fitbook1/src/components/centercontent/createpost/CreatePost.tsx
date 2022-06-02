@@ -8,6 +8,7 @@ const CreatePost = () => {
   const [isEmojiPickerOpen, setEmojiPickerOpen] = useState(false);
   const [postText, setPostText] = useState("");
 
+  // TODO change event
   const onChangeText = (e: any) => {
     let currentText = e.target.value;
     setPostText(currentText);
@@ -19,6 +20,7 @@ const CreatePost = () => {
     }
   };
 
+  // TODO change event
   const onEmojiClick = (event: any, emojiObject: any) => {
     setPostText((postText) => postText + emojiObject.emoji);
   };
@@ -26,6 +28,7 @@ const CreatePost = () => {
   // TODO change type any
   const handleCreatePostClick = (e: any) => {};
 
+  // TODO change event
   const stopPropagation = (e: any) => {
     e.stopPropagation();
   };
@@ -57,6 +60,7 @@ const CreatePost = () => {
               position: "absolute",
               bottom: "-300px",
               left: "8px",
+              zIndex: "var(--z-index-highest)",
             }}
             onEmojiClick={onEmojiClick}
           />
