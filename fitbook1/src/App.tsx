@@ -7,15 +7,6 @@ import { useEffect } from "react";
 import Axios from "axios";
 
 function App() {
-  useEffect(() => {
-    Axios.get("/api/posts")
-      .then((res) => {
-        console.log(res);
-      })
-      .catch(() => {
-        console.log("Error");
-      });
-  }, []);
   return (
     <div className="App">
       <Navbar />
