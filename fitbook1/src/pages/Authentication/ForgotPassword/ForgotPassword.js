@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "../../../Components/Navbar/Navbar";
-import AuthenticationBackground from "../AuthenticationBackground";
+import Navbar from "../../../components/navbar/Navbar";
+import AuthenticationBackground from "../../auth/AuthenticationBackground";
 import ForgotPasswordForm from "./ForgotPasswordForm";
 
 function ForgotPassword() {

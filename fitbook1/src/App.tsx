@@ -8,7 +8,7 @@ import Profile from "./pages/profile/Profile";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import Axios from "axios";
-import Login from "./pages/Authentication/Login/Login";
+import Login from "./pages/auth/login/Login";
 
 function App() {
   useEffect(() => {
