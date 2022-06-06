@@ -1,12 +1,14 @@
 import React from "react";
-// import { useDocumentTitle } from "../../../util/change-document-title";
-import AuthenticationBackground from "../AuthenticationBackground";
-import Loginform from "./Loginform";
-import LoginImage from "../../../assets/images/login.svg";
+import {
+  useDocumentTitle,
+  AuthenticationBackground,
+  Loginform,
+  LoginImage,
+} from "./index";
 import "./login.css";
 
-function Login() {
-  // useDocumentTitle("FitVid-Login");
+const Login = () => {
+  useDocumentTitle("FitBook-Login");
   return (
     <div className="login-container">
       <div className="spacer-3"></div>
@@ -22,6 +24,6 @@ function Login() {
       <div className="spacer-3"></div>
     </div>
   );
-}
+};
 
 export default Login;

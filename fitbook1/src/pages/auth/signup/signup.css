@@ -1,0 +1,7 @@
+.signup-container {
+    margin-top: 70px;
+    width: 100%;
+}
+.signup {
+    background-color: var(--light-blue);
+}

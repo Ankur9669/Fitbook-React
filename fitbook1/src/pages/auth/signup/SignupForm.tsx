@@ -5,38 +5,28 @@ import {
   AiFillEye,
   PrimaryButton,
   SecondaryButton,
-  Axios,
   Link,
   useNavigate,
 } from "../index";
 import "../authentication.css";
-import { showToast } from "../../../util/toasts/showToast";
 
-function Loginform() {
+function SignupForm() {
   const [formDetails, setFormDetails] = useState({
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
   });
   const [isPasswordVisible, setPasswordVisible] = useState(false);
-
   const navigate = useNavigate();
 
-  const onSubmitForm = (e: React.ChangeEvent) => {
+  const onSubmitForm = (e: any) => {
     //TODO VALIDATIONS
     e.preventDefault();
+    handleSignUpClick();
   };
 
-  const handleLoginClick = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (formDetails.email === "" || formDetails.password === "") {
-      showToast("ERROR", "Please Enter the details in form");
-      return;
-    }
-  };
-  const handleLoginWithGuestClick = async (e: React.MouseEvent) => {
-    e.preventDefault();
-  };
-
+  const handleSignUpClick = async () => {};
   return (
     <div className="authentication-form-container">
       <form className="authentication-form">
@@ -44,8 +34,32 @@ function Loginform() {
           <span className="logo-text font-large">FiT</span>BooK
         </h2>
         <p className="font-medium-large weight-semi-bold authentication-form-sub-heading">
-          LOGIN INTO YOUR ACCOUNT
+          REGISTER WITH US
         </p>
+        <div className="form-input-box">
+          <input
+            type="text"
+            placeholder="First Name"
+            value={formDetails.firstName}
+            onChange={(e) =>
+              setFormDetails({ ...formDetails, firstName: e.target.value })
+            }
+            required
+          />
+        </div>
+
+        <div className="form-input-box">
+          <input
+            type="text"
+            placeholder="Last Name"
+            value={formDetails.lastName}
+            onChange={(e) =>
+              setFormDetails({ ...formDetails, lastName: e.target.value })
+            }
+            required
+          />
+        </div>
+
         <div className="form-input-box">
           <input
             type="email"
@@ -80,36 +94,16 @@ function Loginform() {
             />
           )}
         </div>
-        <div className="checkbox-container">
-          <span>
-            <input type="checkbox" value="Remember Box" id="remember-box" />
-            <label
-              htmlFor="remember-box"
-              className="font-medium remember-me-checkbox"
-            >
-              Remember Me
-            </label>
-          </span>
-          <Link to="/" className="forgot-password-btn font-medium">
-            Forgot Password
-          </Link>
-        </div>
 
         <PrimaryButton
-          buttonText="Login As Guest"
+          buttonText="Create New Account"
           className="form-cta-button"
-          onClick={handleLoginWithGuestClick}
+          onClick={onSubmitForm}
         />
 
-        <PrimaryButton
-          buttonText="Login"
-          className="form-cta-button"
-          onClick={handleLoginClick}
-        />
-
-        <Link to="/signup">
+        <Link to="/login">
           <SecondaryButton
-            buttonText="SignUp With Us"
+            buttonText="Already have an account!!!"
             className="form-cta-button"
           />
         </Link>
@@ -118,4 +112,4 @@ function Loginform() {
   );
 }
 
-export default Loginform;
+export default SignupForm;

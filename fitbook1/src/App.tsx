@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import Axios from "axios";
 import Login from "./pages/auth/login/Login";
+import SignUp from "./pages/auth/signup/SignUp";
 
 function App() {
   useEffect(() => {
@@ -31,6 +32,7 @@ function App() {
         <Route path="/bookmarks" element={<Bookmark />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </div>
   );
