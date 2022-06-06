@@ -1,7 +1,8 @@
 import React from "react";
 import Fitbook from "../../assets/images/fitBook.svg";
-import PrimaryButton from "../buttons/PrimaryButton";
 import "./navbar.css";
+import PrimaryButton from "../../components/buttons/PrimaryButton";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -23,7 +24,9 @@ const Navbar = () => {
           />
         </div>
         <div className="icons-container">
-          <PrimaryButton buttonText="Login" />
+          <Link to="/login">
+            <PrimaryButton buttonText="Login" />
+          </Link>
         </div>
       </div>
       <div className="mobile-searchbar-container">

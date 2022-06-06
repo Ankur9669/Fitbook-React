@@ -6,7 +6,9 @@ import Explore from "./pages/explore/Explore";
 import Bookmark from "./pages/bookmark/Bookmark";
 import Profile from "./pages/profile/Profile";
 import { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
 import Axios from "axios";
+import Login from "./pages/Authentication/Login/Login";
 
 function App() {
   useEffect(() => {
@@ -20,15 +22,16 @@ function App() {
   }, []);
   return (
     <div className="App">
+      <ToastContainer />
       <Navbar />
-      <div className="app-container">
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route path="/bookmarks" element={<Bookmark />} />
-          <Route path="/profile" element={<Profile />} />
-        </Routes>
-      </div>
+
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/explore" element={<Explore />} />
+        <Route path="/bookmarks" element={<Bookmark />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </div>
   );
 }
