@@ -15,7 +15,6 @@ const Post = (props: PostProps) => {
   const { userName, postContent, postComments, postLikes } = props;
   const [isPostModalOpen, setPostModalOpen] = useState(false);
 
-  // TODO change type any
   const handleMoreClickIcon = () => {
     setPostModalOpen((isPostModalOpen) => !isPostModalOpen);
   };

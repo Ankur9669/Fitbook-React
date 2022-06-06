@@ -4,8 +4,7 @@ import { CgTrending, IoPersonAddSharp } from "../../../assets/icons/icons";
 import "./sort.css";
 
 const Sort = () => {
-  //TODO change event type
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     console.log(e.target.value);
   };
   return (
@@ -13,7 +12,7 @@ const Sort = () => {
       <h3 className="right-sidebar-heading">Sort By</h3>
       <div className="right-sidebar-content sort-content">
         <PrimaryButton buttonText="what's trending" iconLeft={CgTrending} />
-        <select className="filter-posts" onChange={handleChange}>
+        <select className="filter-posts" onChange={(e) => handleChange(e)}>
           <option value="oldest">Oldest First</option>
           <option value="newest">Newest First</option>
         </select>

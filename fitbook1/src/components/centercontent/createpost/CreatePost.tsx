@@ -1,3 +1,4 @@
+import React from "react";
 import "./createpost.css";
 import { Avatar, FaSmile, PrimaryButton, useState, Picker } from "./index";
 
@@ -8,8 +9,7 @@ const CreatePost = () => {
   const [isEmojiPickerOpen, setEmojiPickerOpen] = useState(false);
   const [postText, setPostText] = useState("");
 
-  // TODO change event
-  const onChangeText = (e: any) => {
+  const onChangeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     let currentText = e.target.value;
     setPostText(currentText);
     setRemainingWords(wordsLimit - currentText.length);
@@ -21,15 +21,13 @@ const CreatePost = () => {
   };
 
   // TODO change event
-  const onEmojiClick = (event: any, emojiObject: any) => {
+  const onEmojiClick = (event: React.MouseEvent, emojiObject: any) => {
     setPostText((postText) => postText + emojiObject.emoji);
   };
 
-  // TODO change type any
-  const handleCreatePostClick = (e: any) => {};
+  const handleCreatePostClick = (e: React.MouseEvent<HTMLButtonElement>) => {};
 
-  // TODO change event
-  const stopPropagation = (e: any) => {
+  const stopPropagation = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
   return (
