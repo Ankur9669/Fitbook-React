@@ -5,8 +5,19 @@ import { Routes, Route } from "react-router-dom";
 import Explore from "./pages/explore/Explore";
 import Bookmark from "./pages/bookmark/Bookmark";
 import Profile from "./pages/profile/Profile";
+import { useEffect } from "react";
+import Axios from "axios";
 
 function App() {
+  useEffect(() => {
+    Axios.get("/api/posts")
+      .then((res) => {
+        console.log(res);
+      })
+      .catch(() => {
+        console.log("Error");
+      });
+  }, []);
   return (
     <div className="App">
       <Navbar />
