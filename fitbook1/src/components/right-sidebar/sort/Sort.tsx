@@ -4,8 +4,7 @@ import { CgTrending, IoPersonAddSharp } from "../../../assets/icons/icons";
 import "./sort.css";
 
 const Sort = () => {
-  //TODO change event type
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     console.log(e.target.value);
   };
   return (

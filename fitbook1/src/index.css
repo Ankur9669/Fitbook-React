@@ -10,7 +10,7 @@ body {
   
 
 :root{
-  --app-max-width: 1200px;
+  --app-max-width: 75rem;
 
   --primary-text-color: #323232;
   --secondary-text-color: #ffffff;

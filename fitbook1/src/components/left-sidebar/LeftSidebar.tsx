@@ -35,7 +35,7 @@ const LeftSidebar = (props: LeftSidebarProps) => {
 
           <NavLink to="/bookmarks" className={`sidebar-icon ${findActive}`}>
             <BsFillBookmarkFill className="sidebar-icon-icon" />
-            <h1 className="sidebar-icon-text">Bookmarks</h1>
+            <h1 className="sidebar-icon-text">Bookmark</h1>
           </NavLink>
 
           <NavLink to="/profile" className={`sidebar-icon ${findActive}`}>

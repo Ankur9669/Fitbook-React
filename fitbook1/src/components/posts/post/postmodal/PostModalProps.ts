@@ -1,4 +1,5 @@
-// TODO change type
+import { Dispatch, SetStateAction } from "react";
+
 export type PostModalProps = {
-  setPostModalOpen: any;
+  setPostModalOpen: Dispatch<SetStateAction<boolean>>;
 };
