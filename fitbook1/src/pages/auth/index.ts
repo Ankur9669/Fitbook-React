@@ -7,10 +7,11 @@ import { Link, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import PrimaryButton from "../../components/buttons/PrimaryButton";
 import SecondaryButton from "../../components/buttons/SecondaryButton";
-// import { loginUser } from "../../Util/loginUser";
-// import { v4 as uuid } from "uuid";
-// import { useToast } from "../../Context/toast-context";
-// import { useUser } from "../../Context/user-context";
+import { showToast } from "../../util/toasts/showToast";
+import { loginUser } from "../../util/api/loginUser";
+import { useAppDispatch } from "../../app/hooks";
+import { authActions } from "../../app/features/auth/authSlice";
+import { signUpUser } from "../../util/api/signupUser";
 
 export {
   AiOutlineMail,
@@ -21,8 +22,9 @@ export {
   Axios,
   PrimaryButton,
   SecondaryButton,
-  // loginUser,
-  // uuid,
-  // useToast,
-  // useUser,
+  showToast,
+  loginUser,
+  useAppDispatch,
+  authActions,
+  signUpUser,
 };

@@ -7,11 +7,11 @@ import {
   SecondaryButton,
   Link,
   useNavigate,
+  showToast,
+  useAppDispatch,
+  authActions,
+  signUpUser,
 } from "../index";
-import { showToast } from "../../../util/toasts/showToast";
-import { signUpUser } from "../../../util/api/signupUser";
-import { useAppDispatch } from "../../../app/hooks";
-import authSlice, { authActions } from "../../../app/features/auth/authSlice";
 import "../authentication.css";
 
 function SignupForm() {
