@@ -10,8 +10,10 @@ import { ToastContainer } from "react-toastify";
 import Axios from "axios";
 import Login from "./pages/auth/login/Login";
 import SignUp from "./pages/auth/signup/SignUp";
+import { useDocumentTitle } from "./util/change-document-title";
 
 function App() {
+  useDocumentTitle("FitBook-Home");
   return (
     <div className="App">
       <ToastContainer />
