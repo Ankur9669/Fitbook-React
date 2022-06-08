@@ -3,6 +3,7 @@
     margin: 2rem;
     border: 1px solid var(--primary-color);
     border-radius: 5px;
+    cursor: pointer;
 }
 .post-avatar-content-container {
     display: flex;

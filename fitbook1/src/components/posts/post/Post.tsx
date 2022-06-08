@@ -10,18 +10,24 @@ import {
   PostModal,
 } from "./index";
 import { PostProps } from "./PostProps";
+import { Link, useNavigate } from "react-router-dom";
 
 const Post = (props: PostProps) => {
   const { post } = props;
   const { userName, postContent, likes, createdAt, updatedAt, comments, _id } =
     post;
   const [isPostModalOpen, setPostModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleMoreClickIcon = () => {
     setPostModalOpen((isPostModalOpen) => !isPostModalOpen);
   };
+
+  const handlePostClick = () => {
+    navigate(`/post/${_id}`);
+  };
   return (
-    <div className="post">
+    <div className="post" onClick={handlePostClick}>
       <div className="post-avatar-content-container">
         <div className="post-avatar-container">
           <img

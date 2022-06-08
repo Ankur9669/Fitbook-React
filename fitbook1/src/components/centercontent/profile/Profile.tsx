@@ -1,7 +1,9 @@
 import "./profile.css";
 import { Avatar, PrimaryButton } from "./index";
+import { ReactDOM, useState } from "react";
 
 const Profile = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
   return (
     <div className="profile-container">
       <div className="profile-background"></div>
