@@ -7,6 +7,7 @@ import {
   AiOutlineMail,
   AiFillEyeInvisible,
   AiFillEye,
+  AiOutlineClose,
 } from "react-icons/ai";
 import { MdExplore } from "react-icons/md";
 import { BsFillBookmarkFill, BsBookmark } from "react-icons/bs";
@@ -29,6 +30,7 @@ export {
   AiOutlineMail,
   AiFillEyeInvisible,
   AiFillEye,
+  AiOutlineClose,
   MdExplore,
   BsFillBookmarkFill,
   BsBookmark,

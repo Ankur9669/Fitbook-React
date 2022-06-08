@@ -1,9 +1,12 @@
 import "./profile.css";
 import { Avatar, PrimaryButton } from "./index";
-import { ReactDOM, useState } from "react";
+import { useState } from "react";
+import ReactDOM from "react-dom";
+import UserModal from "./usermodal/UserModal";
 
 const Profile = () => {
   const [isModalOpen, setModalOpen] = useState(false);
+
   return (
     <div className="profile-container">
       <div className="profile-background"></div>
@@ -19,10 +22,25 @@ const Profile = () => {
         <PrimaryButton buttonText="Visit Website" />
       </div>
       <div className="user-info">
-        <p className="font-medium user-item-clickable">Followers: 10</p>
+        <p
+          className="font-medium user-item-clickable"
+          onClick={() => setModalOpen(true)}
+        >
+          Followers: 10
+        </p>
         <p className="font-medium">Posts</p>
-        <p className="font-medium user-item-clickable">Following: 12</p>
+        <p
+          className="font-medium user-item-clickable"
+          onClick={() => setModalOpen(true)}
+        >
+          Following: 12
+        </p>
       </div>
+      {isModalOpen &&
+        ReactDOM.createPortal(
+          <UserModal setModalOpen={setModalOpen} />,
+          document.getElementById("modal")!
+        )}
     </div>
   );
 };
