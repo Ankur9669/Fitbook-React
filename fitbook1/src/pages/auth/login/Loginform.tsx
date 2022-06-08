@@ -43,6 +43,7 @@ function Loginform() {
 
       if (success) {
         dispatch(authActions.setUser(data));
+        showToast("SUCCESS", "Login successfull");
         navigate("/");
       } else {
         showToast("ERROR", message);
