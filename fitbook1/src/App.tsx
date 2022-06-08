@@ -12,15 +12,6 @@ import Login from "./pages/auth/login/Login";
 import SignUp from "./pages/auth/signup/SignUp";
 
 function App() {
-  useEffect(() => {
-    Axios.get("/api/posts")
-      .then((res) => {
-        console.log(res);
-      })
-      .catch(() => {
-        console.log("Error");
-      });
-  }, []);
   return (
     <div className="App">
       <ToastContainer />
