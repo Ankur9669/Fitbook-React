@@ -8,9 +8,12 @@ import {
   Axios,
   Link,
   useNavigate,
+  showToast,
+  loginUser,
+  useAppDispatch,
+  authActions,
 } from "../index";
 import "../authentication.css";
-import { showToast } from "../../../util/toasts/showToast";
 
 function Loginform() {
   const [formDetails, setFormDetails] = useState({
@@ -18,6 +21,7 @@ function Loginform() {
     password: "",
   });
   const [isPasswordVisible, setPasswordVisible] = useState(false);
+  const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
 
@@ -31,10 +35,34 @@ function Loginform() {
     if (formDetails.email === "" || formDetails.password === "") {
       showToast("ERROR", "Please Enter the details in form");
       return;
+    } else {
+      const { data, success, message } = await loginUser(
+        formDetails.email,
+        formDetails.password
+      );
+
+      if (success) {
+        dispatch(authActions.setUser(data));
+        showToast("SUCCESS", "Login successfull");
+        navigate("/");
+      } else {
+        showToast("ERROR", message);
+      }
     }
   };
   const handleLoginWithGuestClick = async (e: React.MouseEvent) => {
     e.preventDefault();
+    const { data, success, message } = await loginUser(
+      "gankur860@gmail.com",
+      "ankurgupta123"
+    );
+
+    if (success) {
+      dispatch(authActions.setUser(data));
+      navigate("/");
+    } else {
+      showToast("ERROR", message);
+    }
   };
 
   return (

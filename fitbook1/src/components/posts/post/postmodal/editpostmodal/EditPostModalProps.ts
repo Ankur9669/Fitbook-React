@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
-export type PostModalProps = {
-  setPostModalOpen: Dispatch<SetStateAction<boolean>>;
+export type EditPostModalProps = {
+  setEditPostModalOpen: Dispatch<SetStateAction<boolean>>;
   postContent: string;
   postId: string;
 };

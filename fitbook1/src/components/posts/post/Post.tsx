@@ -12,7 +12,9 @@ import {
 import { PostProps } from "./PostProps";
 
 const Post = (props: PostProps) => {
-  const { userName, postContent, postComments, postLikes } = props;
+  const { post } = props;
+  const { userName, postContent, likes, createdAt, updatedAt, comments, _id } =
+    post;
   const [isPostModalOpen, setPostModalOpen] = useState(false);
 
   const handleMoreClickIcon = () => {
@@ -36,17 +38,23 @@ const Post = (props: PostProps) => {
             className="post-more-icon"
             onClick={handleMoreClickIcon}
           />
-          {isPostModalOpen && <PostModal setPostModalOpen={setPostModalOpen} />}
+          {isPostModalOpen && (
+            <PostModal
+              setPostModalOpen={setPostModalOpen}
+              postContent={postContent}
+              postId={_id}
+            />
+          )}
         </div>
       </div>
       <div className="post-buttons-container">
         <div className="post-button-container">
           <AiFillHeart className="post-icons post-button" />
-          <p className="post-button-text font-medium">{postLikes}</p>
+          <p className="post-button-text font-medium">{likes.likeCount}</p>
         </div>
         <div className="post-button-container">
           <BiCommentDetail className="post-icons post-button" />
-          <p className="post-button-text font-medium">{postComments}</p>
+          <p className="post-button-text font-medium">{comments.length}</p>
         </div>
         <div className="post-button-container">
           <BsBookmark className="post-icons post-button" />

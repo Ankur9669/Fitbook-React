@@ -5,11 +5,19 @@ import {
   MobileFooter,
   CreatePostModal,
   FloatingButton,
+  useState,
+  useEffect,
+  useAppDispatch,
+  loadPosts,
 } from "./index";
-import { useState } from "react";
 
 const Homepage = () => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(loadPosts());
+  }, []);
   return (
     <div className="app-container">
       {isModalOpen && <CreatePostModal setModalOpen={setModalOpen} />}

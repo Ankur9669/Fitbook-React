@@ -7,6 +7,10 @@ import {
   SecondaryButton,
   Link,
   useNavigate,
+  showToast,
+  useAppDispatch,
+  authActions,
+  signUpUser,
 } from "../index";
 import "../authentication.css";
 
@@ -19,6 +23,7 @@ function SignupForm() {
   });
   const [isPasswordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const onSubmitForm = (e: any) => {
     //TODO VALIDATIONS
@@ -26,7 +31,31 @@ function SignupForm() {
     handleSignUpClick();
   };
 
-  const handleSignUpClick = async () => {};
+  const handleSignUpClick = async () => {
+    const { data, success, message } = await signUpUser(
+      formDetails.firstName,
+      formDetails.lastName,
+      formDetails.email,
+      formDetails.password
+    );
+
+    if (
+      formDetails.firstName === "" ||
+      formDetails.lastName === "" ||
+      formDetails.email === "" ||
+      formDetails.password === ""
+    ) {
+      showToast("ERROR", "Please Enter the details in the form");
+      return;
+    }
+    if (success) {
+      dispatch(authActions.setUser(data));
+      showToast("SUCCESS", "Sign up successfull");
+      navigate("/");
+    } else {
+      showToast("ERROR", message);
+    }
+  };
   return (
     <div className="authentication-form-container">
       <form className="authentication-form">

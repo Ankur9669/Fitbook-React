@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import Explore from "./pages/explore/Explore";
 import Bookmark from "./pages/bookmark/Bookmark";
 import Profile from "./pages/profile/Profile";
+import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import Axios from "axios";
 import Login from "./pages/auth/login/Login";
