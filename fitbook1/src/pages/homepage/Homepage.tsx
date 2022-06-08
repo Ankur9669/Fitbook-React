@@ -7,14 +7,12 @@ import {
   FloatingButton,
   useState,
   useEffect,
-  useAppSelector,
   useAppDispatch,
   loadPosts,
 } from "./index";
 
 const Homepage = () => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const { posts, loading, error } = useAppSelector((store) => store.posts); // TODO remove it
   const dispatch = useAppDispatch();
 
   useEffect(() => {

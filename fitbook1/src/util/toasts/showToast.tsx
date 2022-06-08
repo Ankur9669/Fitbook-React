@@ -1,4 +1,6 @@
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export const showToast = (toastType: string, toastMessage: string) => {
   switch (toastType) {
     case "SUCCESS":
