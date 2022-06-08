@@ -9,33 +9,10 @@ const Posts = () => {
   return (
     <div className="posts-container">
       {posts.map((post: Posttype) => (
-        <Post post={post} />
+        <div key={post._id}>
+          <Post post={post} />
+        </div>
       ))}
-
-      {/* <Post
-        userName="Ankur Gupta"
-        postComments="20"
-        postLikes="15"
-        postContent="You should never give up on your dreams"
-      />
-      <Post
-        userName="Ankur Gupta"
-        postComments="20"
-        postLikes="15"
-        postContent="You should never give up on your dreams You should never give up on your dreams"
-      />
-      <Post
-        userName="Ankur Gupta"
-        postComments="20"
-        postLikes="15"
-        postContent="You should never give up on your dreams You should never give up on your dreams You should never give up on your dreams"
-      />
-      <Post
-        userName="Ankur Gupta"
-        postComments="20"
-        postLikes="15"
-        postContent="You should never give up on your dreams You should never give up on your dreams You should never give up on your dreams You should never give up on your dreams"
-      /> */}
     </div>
   );
 };

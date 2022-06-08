@@ -13,7 +13,8 @@ import { PostProps } from "./PostProps";
 
 const Post = (props: PostProps) => {
   const { post } = props;
-  const { userName, postContent, likes, createdAt, updatedAt, comments } = post;
+  const { userName, postContent, likes, createdAt, updatedAt, comments, _id } =
+    post;
   const [isPostModalOpen, setPostModalOpen] = useState(false);
 
   const handleMoreClickIcon = () => {
@@ -37,7 +38,13 @@ const Post = (props: PostProps) => {
             className="post-more-icon"
             onClick={handleMoreClickIcon}
           />
-          {isPostModalOpen && <PostModal setPostModalOpen={setPostModalOpen} />}
+          {isPostModalOpen && (
+            <PostModal
+              setPostModalOpen={setPostModalOpen}
+              postContent={postContent}
+              postId={_id}
+            />
+          )}
         </div>
       </div>
       <div className="post-buttons-container">
