@@ -1,0 +1,89 @@
+.single-post-container {
+    margin: 2rem;
+}
+.single-post {
+    background-color: var(--color-white);
+    margin: 2rem 0rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+}
+.single-post-avatar-content-container {
+    display: flex;
+    padding: 1rem 0;
+}
+.single-post-avatar-container {
+    width: 45px;
+    height: 45px;
+    margin: 0 0.5rem;
+}
+.single-post-content-container {
+    position: relative;
+    margin-right: 0.5rem;
+    width: 100%;
+}
+.single-post-header {
+    font-size: 1.1rem;
+}
+.single-post-content {
+    font-size: 1rem;
+    width: 90%;
+}
+.single-post-icons {
+    font-size: 2rem;
+    cursor: pointer;
+}
+.single-post-timeline {
+    position: absolute;
+    right: 0.5rem;
+    top: 0rem;
+}
+.single-post-more-icon:hover {
+    color: var(--primary-color);
+}
+.single-post-buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 1rem;
+}
+.single-post-button-container {
+    display: flex;
+    align-items: center;
+}
+.single-post-button-text {
+    margin-left: 0.3rem;
+}
+.single-post-button:hover {
+    color: var(--primary-color);
+}
+
+.single-post-reply-box-container {
+    margin: 1rem 0 0.5rem 0;
+}
+.single-post-avatar-reply-box-container {
+    display: flex;
+    margin: 0rem 1rem 0rem 0;
+}
+.single-post-avatar {
+    width: 2.81rem;
+    height: 2.81rem;
+    color: var(--color-gray);
+    margin: 0 0.5rem;
+}
+.single-post-reply {
+    width: 100%;
+    border-radius: 5px;
+}
+.single-post-reply:focus {
+    border: 1px solid var(--primary-color);
+}
+.single-post-words-count {
+    border: 2px solid var(--primary-color);
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+.single-post-reply-button-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1rem 0 3.3rem;
+    align-items: center;
+}

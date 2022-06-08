@@ -11,6 +11,7 @@ import Axios from "axios";
 import Login from "./pages/auth/login/Login";
 import SignUp from "./pages/auth/signup/SignUp";
 import { useDocumentTitle } from "./util/change-document-title";
+import SinglePost from "./pages/singlepost/SinglePost";
 
 function App() {
   useDocumentTitle("FitBook-Home");
@@ -26,6 +27,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/post/:postId" element={<SinglePost />} />
       </Routes>
     </div>
   );

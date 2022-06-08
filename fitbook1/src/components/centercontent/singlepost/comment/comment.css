@@ -1,0 +1,32 @@
+.comment-container {
+    margin: 1rem;
+    background-color: var(--background-color-dark);
+}
+.comment-avatar-container {
+    width: 2.8rem;
+    height: 2.8rem;
+    margin: 0 0.5rem;
+}
+
+.comment-avatar-content-container {
+    display: flex;
+    padding: 1rem 0;
+}
+
+.comment-content-container {
+    position: relative;
+    margin-right: 0.5rem;
+    width: 100%;
+}
+.comment-header {
+    font-size: 1.1rem;
+}
+.comment-content {
+    font-size: 1rem;
+    width: 90%;
+}
+.comment-timeline {
+    position: absolute;
+    right: 0.5rem;
+    top: 0rem;
+}
