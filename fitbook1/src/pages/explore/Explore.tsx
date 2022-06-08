@@ -9,12 +9,12 @@ import {
 const Explore = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   return (
-    <>
+    <div className="app-container">
       {isModalOpen && <CreatePostModal setModalOpen={setModalOpen} />}
       <LeftSidebar setModalOpen={setModalOpen} />
       <CenterContent />
       <RightSidebar />
-    </>
+    </div>
   );
 };
 
