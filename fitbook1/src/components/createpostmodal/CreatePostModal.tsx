@@ -21,7 +21,7 @@ const CreatePostModal = (props: CreatePostModalProps) => {
   return (
     <div className="modal-background" onClick={handleModalBackgroundClick}>
       <div className="create-post-modal">
-        <CreatePost />
+        <CreatePost setModalOpen={setModalOpen} />
       </div>
     </div>
   );

@@ -17,11 +17,10 @@ const CenterContent = () => {
   const params = useParams();
   const postId = params?.postId;
 
-  console.log(postId);
   return (
     <div className="center-content">
       {/* <Loader /> */}
-      {pathName === "/" && <CreatePost />}
+      {pathName === "/" && <CreatePost setModalOpen={null} />}
       {pathName === "/bookmarks" && <EmptyBookmark />}
       {pathName === "/profile" && <Profile />}
       {postId !== undefined && <SinglePost />}

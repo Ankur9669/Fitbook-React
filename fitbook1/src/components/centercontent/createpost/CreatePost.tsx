@@ -1,18 +1,26 @@
 import React from "react";
 import "./createpost.css";
-import { Avatar, FaSmile, PrimaryButton, useState, Picker } from "./index";
-import { createPost } from "../../../util/api/createPost";
-import { useAppSelector } from "../../../app/hooks";
-import { useAppDispatch } from "../../../app/hooks";
-import { postsActions } from "../../../app/features/posts/postSlice";
-import { showToast } from "../../../util/toasts/showToast";
+import {
+  Avatar,
+  FaSmile,
+  PrimaryButton,
+  useState,
+  Picker,
+  createPost,
+  useAppDispatch,
+  useAppSelector,
+  postsActions,
+  showToast,
+} from "./index";
+import { CreatePostProps } from "./CreatePostProps";
 
-const CreatePost = () => {
+const CreatePost = (props: CreatePostProps) => {
   const wordsLimit = 250;
   const [remainingWords, setRemainingWords] = useState(wordsLimit);
   const [isPostDisable, setPostDisabled] = useState(true);
   const [isEmojiPickerOpen, setEmojiPickerOpen] = useState(false);
   const [postText, setPostText] = useState("");
+  const { setModalOpen } = props;
 
   // TODO change any type
   const { user }: any = useAppSelector((store) => store.auth);
@@ -51,6 +59,9 @@ const CreatePost = () => {
       showToast("SUCCESS", "Post Created Successfully");
       dispatch(postsActions.setPosts({ posts: data }));
       setPostText("");
+      if (setModalOpen !== null) {
+        setModalOpen(false);
+      }
     } else {
       showToast("ERROR", message);
     }

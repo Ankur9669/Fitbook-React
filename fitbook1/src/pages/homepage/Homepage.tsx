@@ -10,22 +10,22 @@ import {
   useAppDispatch,
   useAppSelector,
   loadPosts,
+  useDocumentTitle,
 } from "./index";
 
 const Homepage = () => {
   const [isModalOpen, setModalOpen] = useState(false);
+
+  // TODO remove these
   const { user } = useAppSelector((state) => state.auth);
   const { posts } = useAppSelector((state) => state.posts);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(loadPosts());
-    console.log(user);
   }, []);
 
-  useEffect(() => {
-    console.log(posts);
-  }, [posts]);
+  useDocumentTitle("FitBook-Home");
   return (
     <div className="app-container">
       {isModalOpen && <CreatePostModal setModalOpen={setModalOpen} />}
