@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Post from "./post/Post";
 import { useAppSelector } from "../../app/hooks";
 import { Post as Posttype } from "./post/PostProps";
@@ -6,6 +6,9 @@ import { Post as Posttype } from "./post/PostProps";
 const Posts = () => {
   const { posts, loading, error } = useAppSelector((store) => store.posts);
 
+  useEffect(() => {
+    console.log(posts);
+  }, [posts]);
   return (
     <div className="posts-container">
       {posts.map((post: Posttype) => (

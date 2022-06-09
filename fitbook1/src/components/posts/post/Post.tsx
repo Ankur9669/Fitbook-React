@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./post.css";
 import {
   AiFillHeart,
@@ -17,6 +17,7 @@ import { addPostLike } from "../../../util/api/addPostLike";
 import { useAppDispatch } from "../../centercontent/createpost";
 import { postsActions } from "../../centercontent/createpost";
 import { showToast } from "../../centercontent/createpost";
+import { removePostLike } from "../../../util/api/removePostLike";
 
 const Post = (props: PostProps) => {
   const { post } = props;
@@ -37,7 +38,7 @@ const Post = (props: PostProps) => {
   const userEmail = user.email;
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const isLikedPost = findLiked(userEmail, likes.likedBy);
+  let isLikedPost = findLiked(userEmail, likes.likedBy);
 
   const handleMoreClickIcon = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -52,6 +53,17 @@ const Post = (props: PostProps) => {
       if (success) {
         dispatch(postsActions.setPosts({ posts: data }));
         showToast("SUCCESS", "Post Liked Successfully");
+        isLikedPost = !isLikedPost;
+      } else {
+        showToast("ERROR", message);
+      }
+    } else {
+      const { data, success, message } = await removePostLike(_id);
+
+      if (success) {
+        dispatch(postsActions.setPosts({ posts: data }));
+        showToast("SUCCESS", "Post UnLiked Successfully");
+        isLikedPost = !isLikedPost;
       } else {
         showToast("ERROR", message);
       }
@@ -68,7 +80,6 @@ const Post = (props: PostProps) => {
   const handlePostClick = () => {
     navigate(`/post/${_id}`);
   };
-  // console.log(post);
 
   return (
     <div className="post" onClick={handlePostClick}>
@@ -103,7 +114,9 @@ const Post = (props: PostProps) => {
       <div className="post-buttons-container">
         <div className="post-button-container">
           <AiFillHeart
-            className={`post-icons post-button ${isLikedPost && "post-liked"}`}
+            className={`post-icons post-button ${
+              isLikedPost ? "post-liked" : "post-unliked"
+            }`}
             onClick={handleLikeIconClick}
           />
           <p className="post-button-text font-medium">{likes.likeCount}</p>

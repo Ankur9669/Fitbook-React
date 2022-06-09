@@ -44,6 +44,9 @@
 .post-liked {
     color: var(--primary-color);
 }
+.post-unliked {
+    color: var(--color-black);
+}
 .post-bookmarked {
     color: var(--primary-color);
 }
