@@ -59,6 +59,7 @@ const CreatePost = (props: CreatePostProps) => {
       showToast("SUCCESS", "Post Created Successfully");
       dispatch(postsActions.setPosts({ posts: data }));
       setPostText("");
+
       if (setModalOpen !== null) {
         setModalOpen(false);
       }
