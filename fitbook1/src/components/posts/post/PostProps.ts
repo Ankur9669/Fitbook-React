@@ -21,7 +21,8 @@ export type Post = {
     ];
     dislikedBy: [];
   };
-  userName: string;
+  username: string;
+  email: string;
   createdAt: Date;
   updatedAt: Date;
   comments: [

@@ -11,21 +11,36 @@ import {
 } from "./index";
 import { PostProps } from "./PostProps";
 import { Link, useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../../app/hooks";
 
 const Post = (props: PostProps) => {
   const { post } = props;
-  const { userName, postContent, likes, createdAt, updatedAt, comments, _id } =
-    post;
+  const {
+    email: postEmail,
+    postContent,
+    likes,
+    createdAt,
+    updatedAt,
+    comments,
+    _id,
+    username,
+  } = post;
   const [isPostModalOpen, setPostModalOpen] = useState(false);
+
+  // TODO change any type
+  const { user }: any = useAppSelector((store) => store.auth);
+  const userEmail = user.email;
   const navigate = useNavigate();
 
-  const handleMoreClickIcon = () => {
+  const handleMoreClickIcon = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setPostModalOpen((isPostModalOpen) => !isPostModalOpen);
   };
 
   const handlePostClick = () => {
     navigate(`/post/${_id}`);
   };
+  // console.log(post);
   return (
     <div className="post" onClick={handlePostClick}>
       <div className="post-avatar-content-container">
@@ -38,12 +53,15 @@ const Post = (props: PostProps) => {
         </div>
 
         <div className="post-content-container">
-          <h3 className="post-header">{userName}</h3>
+          <h3 className="post-header">{username}</h3>
           <p className="post-content">{postContent}</p>
-          <FiMoreHorizontal
-            className="post-more-icon"
-            onClick={handleMoreClickIcon}
-          />
+          {postEmail !== userEmail && (
+            <FiMoreHorizontal
+              className="post-more-icon"
+              onClick={handleMoreClickIcon}
+            />
+          )}
+
           {isPostModalOpen && (
             <PostModal
               setPostModalOpen={setPostModalOpen}
