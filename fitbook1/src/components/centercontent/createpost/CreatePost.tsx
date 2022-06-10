@@ -11,6 +11,7 @@ import {
   useAppSelector,
   postsActions,
   showToast,
+  getSortedPosts,
 } from "./index";
 import { CreatePostProps } from "./CreatePostProps";
 
@@ -24,6 +25,7 @@ const CreatePost = (props: CreatePostProps) => {
 
   // TODO change any type
   const { user }: any = useAppSelector((store) => store.auth);
+  const { sortBy }: any = useAppSelector((store) => store.posts);
   const userEmail = user.email;
   const firstName = user.firstName;
   const lastName = user.lastName;
@@ -57,8 +59,10 @@ const CreatePost = (props: CreatePostProps) => {
 
     if (success) {
       showToast("SUCCESS", "Post Created Successfully");
-      dispatch(postsActions.setPosts({ posts: data }));
+      const sortedPosts = getSortedPosts(data, sortBy);
+      dispatch(postsActions.setPosts({ posts: sortedPosts }));
       setPostText("");
+      setRemainingWords(wordsLimit);
 
       if (setModalOpen !== null) {
         setModalOpen(false);

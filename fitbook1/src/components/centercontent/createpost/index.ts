@@ -8,6 +8,7 @@ import { useAppSelector } from "../../../app/hooks";
 import { useAppDispatch } from "../../../app/hooks";
 import { postsActions } from "../../../app/features/posts/postSlice";
 import { showToast } from "../../../util/toasts/showToast";
+import { getSortedPosts } from "../../../util/getSortedPosts";
 
 export {
   Avatar,
@@ -20,4 +21,5 @@ export {
   useAppDispatch,
   postsActions,
   showToast,
+  getSortedPosts,
 };
