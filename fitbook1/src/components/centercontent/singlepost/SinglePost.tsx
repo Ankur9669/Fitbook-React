@@ -17,6 +17,10 @@ import { getSinglePost } from "../../../util/api/getSinglePost";
 import { showToast } from "../../../util/toasts/showToast";
 import { Posttype } from "../../../app/features/posts/Posttype";
 import { CommentType } from "../../../util/types/CommentType";
+import { addComment } from "../../../util/api/addComment";
+import { useAppSelector } from "../../../app/hooks";
+import { findLiked } from "../../../util/findLiked";
+import { findBookMarked } from "../../../util/findBookMarked";
 
 const Singlepost = () => {
   const wordsCount = 250;
@@ -24,6 +28,17 @@ const Singlepost = () => {
   const [remainingWords, setRemainingWords] = useState<number>(wordsCount);
   // TODO change any type
   const [post, setPost] = useState<any>({});
+  const [postComments, setPostComments] = useState<[] | undefined>(
+    post?.comments
+  );
+  const { user }: any = useAppSelector((store) => store.auth);
+  const { postId } = useParams();
+  const userName = `${user.firstName} ${user.lastName}`;
+  const userEmail = user.email;
+
+  const userBookmarks = user.bookmarks;
+  // let isLikedPost = findLiked(userEmail, likes.likedBy);
+  // let isPostBookMarked = findBookMarked(_id, userBookmarks);
 
   const navigate = useNavigate();
 
@@ -34,15 +49,30 @@ const Singlepost = () => {
   const handleBackButtonClick = () => {
     navigate(-1);
   };
-  const { postId } = useParams();
+  const handleReplyClick = async () => {
+    if (postId !== undefined) {
+      const { data, success, message } = await addComment(
+        postId,
+        replyText,
+        userName
+      );
+
+      if (success) {
+        setPostComments(data);
+        showToast("SUCCESS", "Comment Added Successflly");
+      } else {
+        showToast("ERROR", message);
+      }
+    }
+  };
 
   useEffect(() => {
     (async () => {
       if (postId != undefined) {
         const { data, success, message } = await getSinglePost(postId);
         if (success) {
-          console.log(data);
           setPost(data);
+          setPostComments(data?.comments);
         } else {
           showToast("ERROR", message);
         }
@@ -97,20 +127,20 @@ const Singlepost = () => {
             <FaUserCircle className="single-post-avatar" />
             <input
               placeholder="Enter your reply"
-              className="single-post-reply"
+              className="single-post-reply font-medium"
               value={replyText}
               onChange={onReplyTextChange}
             />
           </div>
         </div>
         <div className="single-post-reply-button-container">
-          <p className="single-post-words-count font-normal">
+          <p className="single-post-words-count font-medium">
             {remainingWords}
           </p>
-          <PrimaryButton buttonText="Reply" />
+          <PrimaryButton buttonText="Reply" onClick={handleReplyClick} />
         </div>
 
-        {post?.comments?.map((comment: CommentType) => {
+        {postComments?.map((comment: CommentType) => {
           return (
             <Comment
               userName={comment.username}
