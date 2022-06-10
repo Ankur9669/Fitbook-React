@@ -7,6 +7,7 @@ import FloatingButton from "../../components/floatingbutton/FloatingButton";
 import { useState, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { loadPosts } from "../../app/features/posts/postSlice";
+import { useDocumentTitle } from "../../util/change-document-title";
 
 export {
   LeftSideBar,
@@ -20,4 +21,5 @@ export {
   useAppSelector,
   loadPosts,
   useEffect,
+  useDocumentTitle,
 };

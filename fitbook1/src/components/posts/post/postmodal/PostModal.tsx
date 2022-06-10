@@ -9,7 +9,8 @@ import EditPostModal from "./editpostmodal/EditPostModal";
 const PostModal = (props: PostModalProps) => {
   const { setPostModalOpen, postContent, postId } = props;
   const [isEditPostModalOpen, setEditPostModalOpen] = useState(false);
-  const handleEditButtonClick = () => {
+  const handleEditButtonClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setEditPostModalOpen(true);
   };
   return (

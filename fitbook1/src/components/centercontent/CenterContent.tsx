@@ -7,17 +7,23 @@ import {
   MdPendingActions,
   EmptyBookmark,
   Profile,
+  useParams,
 } from "./index";
+import SinglePost from "./singlepost/SinglePost";
 
 const CenterContent = () => {
   const location = useLocation();
   const pathName = location.pathname;
+  const params = useParams();
+  const postId = params?.postId;
+
   return (
     <div className="center-content">
       {/* <Loader /> */}
-      {pathName === "/" && <CreatePost />}
+      {pathName === "/" && <CreatePost setModalOpen={null} />}
       {pathName === "/bookmarks" && <EmptyBookmark />}
       {pathName === "/profile" && <Profile />}
+      {postId !== undefined && <SinglePost />}
       <Posts />
     </div>
   );

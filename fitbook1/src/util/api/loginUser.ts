@@ -7,7 +7,6 @@ const loginUser = async (email: string, password: string) => {
       password: password,
     });
 
-    console.log(response);
     const token = response.data.encodedToken;
     localStorage.setItem("token", token);
 

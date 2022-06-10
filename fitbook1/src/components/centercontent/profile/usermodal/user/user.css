@@ -1,0 +1,10 @@
+.user {
+    display: flex;
+    align-items: center;
+    margin: 1rem;
+}
+.user-avatar-container {
+    width: 2.7rem;
+    height: 2.7rem;
+    margin-right: 0.5rem;
+}

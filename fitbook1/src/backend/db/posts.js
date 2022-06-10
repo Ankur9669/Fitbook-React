@@ -18,14 +18,14 @@ export const posts = [
         {
           firstName: "Asmit",
           lastName: "Shrivastav",
-          username: "Asmit Shrivastava",
+          email: "asmit123@gmail.com",
           profileImage:
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652721963/photo-1633332755192-727a05c4013d_qo2tty.jpg",
         },
         {
           firstName: "Ankur",
           lastName: "Gupta",
-          username: "Ankur Gupta",
+          email: "gankur860@gmail.com",
           profileImage:
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652722040/596_jes87l.jpg",
         },
@@ -33,6 +33,7 @@ export const posts = [
       dislikedBy: [],
     },
     username: "Ankur Gupta",
+    email: "gankur860@gmail.com",
     profileImage:
       "https://res.cloudinary.com/dylkclyom/image/upload/v1652721946/photo-1580489944761-15a19d654956_dekeb7.jpg",
     createdAt: new Date("February 10 2022 11:06:56"),
@@ -40,7 +41,7 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
-        username: "shubhamsoni",
+        email: "priya3112@gmail.com",
         profileImage:
           "https://res.cloudinary.com/dylkclyom/image/upload/v1652721963/photo-1633332755192-727a05c4013d_qo2tty.jpg",
         text: "Interesting",
@@ -52,7 +53,7 @@ export const posts = [
       },
       {
         _id: uuid(),
-        username: "annachase",
+        email: "gankur860@gmail.com",
         profileImage:
           "https://res.cloudinary.com/dylkclyom/image/upload/v1652722040/596_jes87l.jpg",
         text: "Wow!",
@@ -75,14 +76,14 @@ export const posts = [
         {
           firstName: "Hermione",
           lastName: "Granger",
-          username: "hergranger",
+          email: "gankur860@gmail.com",
           profileImage:
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652722029/latest_ccm17c.jpg",
         },
         {
           firstName: "Annabeth",
           lastName: "Chase",
-          username: "annachase",
+          email: "asmit123@gmail.com",
           profileImage:
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652722040/596_jes87l.jpg",
           website: "https://riordan.fandom.com/wiki/Annabeth_Chase",
@@ -90,27 +91,28 @@ export const posts = [
         {
           firstName: "Adarsh",
           lastName: "Balika",
-          username: "adarshbalika",
+          email: "gankur860@gmail.com",
           profileImage:
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652721946/photo-1580489944761-15a19d654956_dekeb7.jpg",
         },
         {
           firstName: "Bharati",
           lastName: "Subramanian",
-          username: "bhaaratii",
+          email: "bharti860@gmail.com",
           profileImage:
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
         },
       ],
       dislikedBy: [],
     },
-    username: "hergranger",
+    username: "Priya Patel",
+    email: "priya3112@gmail.com",
     profileImage:
       "https://res.cloudinary.com/dylkclyom/image/upload/v1652722029/latest_ccm17c.jpg",
     comments: [
       {
         _id: uuid(),
-        username: "bhaaratii",
+        email: "priya3112@gmail.com",
         profileImage:
           "https://res.cloudinary.com/dylkclyom/image/upload/v1652722029/latest_ccm17c.jpg",
         text: "Haha, I know the feeling! *grimace*",
@@ -122,7 +124,7 @@ export const posts = [
       },
       {
         _id: uuid(),
-        username: "adarshbalika",
+        email: "gankur860@gmail.com",
         profileImage:
           "https://res.cloudinary.com/dylkclyom/image/upload/v1652721946/photo-1580489944761-15a19d654956_dekeb7.jpg",
         text: "Hey, why don't you go out for a change! xD",
@@ -146,21 +148,22 @@ export const posts = [
         {
           firstName: "Alison",
           lastName: "Day",
-          username: "aliiday",
+          email: "priya3112@gmail.com",
           profileImage:
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652858637/Allison-Day-1-2_skydx2.jpg",
         },
         {
           firstName: "Jennifer",
           lastName: "Jäger",
-          username: "jennyj",
+          email: "gankur860@gmail.com",
           profileImage:
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652858651/Circle_Team_Jennifer_qlyfwo.png",
         },
       ],
       dislikedBy: [],
     },
-    username: "aliiday",
+    username: "Asmit Shrivastava",
+    email: "asmit123@gmail.com",
     profileImage:
       "https://res.cloudinary.com/dylkclyom/image/upload/v1652858637/Allison-Day-1-2_skydx2.jpg",
     comments: [],
@@ -178,274 +181,19 @@ export const posts = [
         {
           firstName: "Hermione",
           lastName: "Granger",
-          username: "hergranger",
+          email: "priya3112@gmail.com",
           profileImage:
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652722029/latest_ccm17c.jpg",
         },
       ],
       dislikedBy: [],
     },
-    username: "bhaaratii",
+    username: "Priya Patel",
+    email: "priya3112@gmail.com",
     profileImage:
       "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
     comments: [],
     createdAt: new Date("March 17 2019 15:26:58"),
-    updatedAt: formatDate(),
-  },
-  {
-    _id: uuid(),
-    postContent:
-      "if you speak to me when i'm reading i will find a way to break into your home and force you to listen to my feelings on ostriches until you agree never to invade the world i'm visiting again.",
-    postImage: null,
-    likes: {
-      likeCount: 6,
-      likedBy: [
-        {
-          firstName: "Jane",
-          lastName: "Doe",
-          username: "janedoe",
-          profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1652722016/landingImg_dff0ku.png",
-        },
-        {
-          firstName: "Ryan",
-          lastName: "Terry",
-          username: "terrry",
-          profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1652857916/photo-1527980965255-d3b416303d12_qg20fu.jpg",
-        },
-        {
-          firstName: "Sheldon",
-          lastName: "Borenstein",
-          username: "shelbor",
-          profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1652858279/photo-1507003211169-0a1dd7228f2d_zgfurs.jpg",
-        },
-        {
-          firstName: "Alison",
-          lastName: "Day",
-          username: "aliiday",
-          profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1652858637/Allison-Day-1-2_skydx2.jpg",
-        },
-        {
-          firstName: "Alex",
-          lastName: "Smith",
-          username: "youknowwho",
-          profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1652722175/profile-img_nxszbk.jpg",
-        },
-        {
-          firstName: "Dennis",
-          lastName: "Snellenberg",
-          username: "dennsnell",
-          profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1652859048/DSC07033_jomlkt.jpg",
-        },
-      ],
-      dislikedBy: [],
-    },
-    username: "jennyj",
-    profileImage:
-      "https://res.cloudinary.com/dylkclyom/image/upload/v1652858651/Circle_Team_Jennifer_qlyfwo.png",
-    createdAt: new Date("November 23 2016 09:17:22"),
-    updatedAt: formatDate(),
-    comments: [
-      {
-        _id: uuid(),
-        username: "janedoe",
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1652722016/landingImg_dff0ku.png",
-        text: "Ahh! Absolutely hilarious!!",
-        createdAt: new Date("November 26 2016 14:11:22"),
-        votes: {
-          upvotedBy: [],
-          downvotedBy: [],
-        },
-      },
-    ],
-  },
-  {
-    _id: uuid(),
-    postContent:
-      "my ideal partner is thick, has a tough spine, travels with me wherever I go, and might actually be a book.",
-    postImage: null,
-    likes: {
-      likeCount: 0,
-      likedBy: [],
-      dislikedBy: [],
-    },
-    username: "youknowwho",
-    profileImage:
-      "https://res.cloudinary.com/dylkclyom/image/upload/v1652722175/profile-img_nxszbk.jpg",
-    createdAt: new Date("October 10 2007 16:40:57"),
-    updatedAt: formatDate(),
-    comments: [],
-  },
-  {
-    _id: uuid(),
-    postContent: "I love blue food and books. Oh, and obviously you Annabeth!",
-    postImage: null,
-    likes: {
-      likeCount: 4,
-      likedBy: [
-        {
-          firstName: "Annabeth",
-          lastName: "Chase",
-          username: "annachase",
-          profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1652722040/596_jes87l.jpg",
-        },
-        {
-          firstName: "John",
-          lastName: "Doe",
-          username: "johndoe",
-          profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1652721997/photo-1531427186611-ecfd6d936c79_tmpw71.jpg",
-        },
-        {
-          firstName: "Jane",
-          lastName: "Doe",
-          username: "janedoe",
-          profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1652722016/landingImg_dff0ku.png",
-        },
-        {
-          firstName: "Hermione",
-          lastName: "Granger",
-          username: "hergranger",
-          profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1652722029/latest_ccm17c.jpg",
-        },
-      ],
-      dislikedBy: [],
-    },
-    username: "percyblues",
-    profileImage:
-      "https://res.cloudinary.com/dylkclyom/image/upload/v1652722054/596_pkjzf6.jpg",
-    createdAt: new Date("September 12 2015 17:20:24"),
-    updatedAt: formatDate(),
-    comments: [
-      {
-        _id: uuid(),
-        username: "annachase",
-
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1652722040/596_jes87l.jpg",
-        website: "https://riordan.fandom.com/wiki/Annabeth_Chase",
-        text: "Haha, it's okay. I love books and architecture more than I love you as well!",
-        createdAt: new Date("September 12 2015 18:34:54"),
-        votes: {
-          upvotedBy: [],
-          downvotedBy: [],
-        },
-      },
-    ],
-  },
-  {
-    _id: uuid(),
-    postContent:
-      "God bless Jane Austen for naming the prettiest, kindest, most generous, most patient character in Pride and Prejudice after herself that is self-love and I am on board",
-    postImage: null,
-    likes: {
-      likeCount: 1,
-      likedBy: [
-        {
-          firstName: "Sheldon",
-          lastName: "Borenstein",
-          username: "shelbor",
-          profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1652858279/photo-1507003211169-0a1dd7228f2d_zgfurs.jpg",
-        },
-      ],
-      dislikedBy: [],
-    },
-    username: "shelbor",
-    profileImage:
-      "https://res.cloudinary.com/dylkclyom/image/upload/v1652858279/photo-1507003211169-0a1dd7228f2d_zgfurs.jpg",
-    createdAt: new Date("December 21 2011 08:01:27"),
-    updatedAt: formatDate(),
-    comments: [],
-  },
-  {
-    _id: uuid(),
-    postContent: `reads book: *favorite character dies*\nme: maybe if i read this again he won't die`,
-    postImage: null,
-    likes: {
-      likeCount: 7,
-      likedBy: [
-        {
-          firstName: "Adarsh",
-          lastName: "Balika",
-          username: "adarshbalika",
-          profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1652721946/photo-1580489944761-15a19d654956_dekeb7.jpg",
-        },
-        {
-          firstName: "Shubham",
-          lastName: "Soni",
-          username: "shubhamsoni",
-          profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1652721963/photo-1633332755192-727a05c4013d_qo2tty.jpg",
-        },
-        {
-          firstName: "Bharati",
-          lastName: "Subramanian",
-          username: "bhaaratii",
-          profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
-        },
-        {
-          _id: uuid(),
-          firstName: "Alex",
-          lastName: "Smith",
-          username: "youknowwho",
-          profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1652722175/profile-img_nxszbk.jpg",
-        },
-        {
-          firstName: "Ryan",
-          lastName: "Terry",
-          username: "terrry",
-          profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1652857916/photo-1527980965255-d3b416303d12_qg20fu.jpg",
-        },
-        {
-          _id: uuid(),
-          firstName: "Sheldon",
-          lastName: "Borenstein",
-          username: "shelbor",
-          profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1652858279/photo-1507003211169-0a1dd7228f2d_zgfurs.jpg",
-        },
-        {
-          firstName: "Alison",
-          lastName: "Day",
-          username: "aliiday",
-          profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1652858637/Allison-Day-1-2_skydx2.jpg",
-        },
-      ],
-      dislikedBy: [],
-    },
-    username: "johndoe",
-    profileImage:
-      "https://res.cloudinary.com/dylkclyom/image/upload/v1652721997/photo-1531427186611-ecfd6d936c79_tmpw71.jpg",
-    comments: [
-      {
-        _id: uuid(),
-        username: "bhaaratii",
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1652722029/latest_ccm17c.jpg",
-        text: "me: cries in a corner!",
-        createdAt: new Date("May 12 2018 10:53:17"),
-        votes: {
-          upvotedBy: [],
-          downvotedBy: [],
-        },
-      },
-    ],
-    createdAt: new Date("May 12 2018 12:13:08"),
     updatedAt: formatDate(),
   },
   {

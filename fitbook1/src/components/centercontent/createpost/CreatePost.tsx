@@ -1,13 +1,34 @@
 import React from "react";
 import "./createpost.css";
-import { Avatar, FaSmile, PrimaryButton, useState, Picker } from "./index";
+import {
+  Avatar,
+  FaSmile,
+  PrimaryButton,
+  useState,
+  Picker,
+  createPost,
+  useAppDispatch,
+  useAppSelector,
+  postsActions,
+  showToast,
+} from "./index";
+import { CreatePostProps } from "./CreatePostProps";
 
-const CreatePost = () => {
+const CreatePost = (props: CreatePostProps) => {
   const wordsLimit = 250;
   const [remainingWords, setRemainingWords] = useState(wordsLimit);
   const [isPostDisable, setPostDisabled] = useState(true);
   const [isEmojiPickerOpen, setEmojiPickerOpen] = useState(false);
   const [postText, setPostText] = useState("");
+  const { setModalOpen } = props;
+
+  // TODO change any type
+  const { user }: any = useAppSelector((store) => store.auth);
+  const userEmail = user.email;
+  const firstName = user.firstName;
+  const lastName = user.lastName;
+  const userName = `${firstName} ${lastName}`;
+  const dispatch = useAppDispatch();
 
   const onChangeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     let currentText = e.target.value;
@@ -20,12 +41,32 @@ const CreatePost = () => {
     }
   };
 
-  // TODO change event
+  // TODO change any type
   const onEmojiClick = (event: React.MouseEvent, emojiObject: any) => {
     setPostText((postText) => postText + emojiObject.emoji);
   };
 
-  const handleCreatePostClick = (e: React.MouseEvent<HTMLButtonElement>) => {};
+  const handleCreatePostClick = async (
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    const { data, success, message } = await createPost(
+      postText,
+      userEmail,
+      userName
+    );
+
+    if (success) {
+      showToast("SUCCESS", "Post Created Successfully");
+      dispatch(postsActions.setPosts({ posts: data }));
+      setPostText("");
+
+      if (setModalOpen !== null) {
+        setModalOpen(false);
+      }
+    } else {
+      showToast("ERROR", message);
+    }
+  };
 
   const stopPropagation = (e: React.MouseEvent) => {
     e.stopPropagation();
