@@ -1,17 +1,37 @@
 import React from "react";
 import { PostModalProps } from "./PostModalProps";
-import { AiFillEdit, AiFillDelete } from "../../../../assets/icons/icons";
-import { useState } from "react";
-import ReactDOM from "react-dom";
+import {
+  deletePost,
+  showToast,
+  useAppDispatch,
+  postsActions,
+  EditPostModal,
+  ReactDOM,
+  useState,
+  AiFillDelete,
+  AiFillEdit,
+} from "./index";
 import "./postmodal.css";
-import EditPostModal from "./editpostmodal/EditPostModal";
 
 const PostModal = (props: PostModalProps) => {
   const { setPostModalOpen, postContent, postId } = props;
   const [isEditPostModalOpen, setEditPostModalOpen] = useState(false);
+  const dispatch = useAppDispatch();
+
   const handleEditButtonClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     setEditPostModalOpen(true);
+  };
+
+  const handleDeleteButtonClick = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const { data, success, message } = await deletePost(postId);
+    if (success) {
+      dispatch(postsActions.setPosts({ posts: data }));
+      showToast("SUCCESS", "Post Deleted Successfully");
+    } else {
+      showToast("ERROR", "Could not delete post");
+    }
   };
   return (
     <div className="post-modal">
@@ -19,7 +39,7 @@ const PostModal = (props: PostModalProps) => {
         Edit
         <AiFillEdit className="post-modal-icon" />
       </button>
-      <button className="post-modal-button">
+      <button className="post-modal-button" onClick={handleDeleteButtonClick}>
         Delete
         <AiFillDelete />
       </button>

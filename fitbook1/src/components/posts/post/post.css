@@ -50,6 +50,9 @@
 .post-bookmarked {
     color: var(--primary-color);
 }
+.post-unbookmarked {
+    color: var(--color-black);
+}
 .post-buttons-container {
     display: flex;
     justify-content: space-between;

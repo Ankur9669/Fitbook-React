@@ -8,16 +8,20 @@ import {
   FiMoreHorizontal,
   Avatar,
   PostModal,
+  useNavigate,
+  useAppSelector,
+  findLiked,
+  addPostLike,
+  useAppDispatch,
+  postsActions,
+  showToast,
+  removePostLike,
+  removeFromBookmark,
+  addToBookmark,
+  findBookMarked,
+  authActions,
 } from "./index";
 import { PostProps } from "./PostProps";
-import { Link, useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../../app/hooks";
-import { findLiked } from "../../../util/findLiked";
-import { addPostLike } from "../../../util/api/addPostLike";
-import { useAppDispatch } from "../../centercontent/createpost";
-import { postsActions } from "../../centercontent/createpost";
-import { showToast } from "../../centercontent/createpost";
-import { removePostLike } from "../../../util/api/removePostLike";
 
 const Post = (props: PostProps) => {
   const { post } = props;
@@ -36,9 +40,11 @@ const Post = (props: PostProps) => {
   // TODO change any type
   const { user }: any = useAppSelector((store) => store.auth);
   const userEmail = user.email;
+  const userBookmarks = user.bookmarks;
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   let isLikedPost = findLiked(userEmail, likes.likedBy);
+  let isPostBookMarked = findBookMarked(_id, userBookmarks);
 
   const handleMoreClickIcon = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -53,7 +59,6 @@ const Post = (props: PostProps) => {
       if (success) {
         dispatch(postsActions.setPosts({ posts: data }));
         showToast("SUCCESS", "Post Liked Successfully");
-        isLikedPost = !isLikedPost;
       } else {
         showToast("ERROR", message);
       }
@@ -63,7 +68,6 @@ const Post = (props: PostProps) => {
       if (success) {
         dispatch(postsActions.setPosts({ posts: data }));
         showToast("SUCCESS", "Post UnLiked Successfully");
-        isLikedPost = !isLikedPost;
       } else {
         showToast("ERROR", message);
       }
@@ -74,8 +78,27 @@ const Post = (props: PostProps) => {
     e.stopPropagation();
   };
 
-  const handleBookmarkIconClick = (e: React.MouseEvent) => {
+  const handleBookmarkIconClick = async (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (!isPostBookMarked) {
+      const { data, success, message } = await addToBookmark(_id);
+
+      if (success) {
+        dispatch(authActions.setBookmarks({ bookmarks: data }));
+        showToast("SUCCESS", "Post Bookmarked Successfully");
+      } else {
+        showToast("ERROR", message);
+      }
+    } else {
+      const { data, success, message } = await removeFromBookmark(_id);
+
+      if (success) {
+        dispatch(authActions.setBookmarks({ bookmarks: data }));
+        showToast("SUCCESS", "Post Removed From Bookmarked Successfully");
+      } else {
+        showToast("ERROR", message);
+      }
+    }
   };
   const handlePostClick = () => {
     navigate(`/post/${_id}`);
@@ -95,7 +118,7 @@ const Post = (props: PostProps) => {
         <div className="post-content-container">
           <h3 className="post-header">{username}</h3>
           <p className="post-content">{postContent}</p>
-          {postEmail !== userEmail && (
+          {postEmail === userEmail && (
             <FiMoreHorizontal
               className="post-more-icon"
               onClick={handleMoreClickIcon}
@@ -130,7 +153,9 @@ const Post = (props: PostProps) => {
         </div>
         <div className="post-button-container">
           <BsBookmark
-            className="post-icons post-button"
+            className={`post-icons post-button ${
+              isPostBookMarked ? "post-bookmarked" : "post-unbookmarked"
+            }`}
             onClick={handleBookmarkIconClick}
           />
         </div>

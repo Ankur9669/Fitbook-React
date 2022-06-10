@@ -6,9 +6,6 @@ import { Post as Posttype } from "./post/PostProps";
 const Posts = () => {
   const { posts, loading, error } = useAppSelector((store) => store.posts);
 
-  useEffect(() => {
-    console.log(posts);
-  }, [posts]);
   return (
     <div className="posts-container">
       {posts.map((post: Posttype) => (
