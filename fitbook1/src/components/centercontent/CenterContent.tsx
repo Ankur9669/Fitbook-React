@@ -24,7 +24,7 @@ const CenterContent = () => {
       {pathName === "/bookmarks" && <EmptyBookmark />}
       {pathName === "/profile" && <Profile />}
       {postId !== undefined && <SinglePost />}
-      <Posts />
+      {postId === undefined && <Posts />}
     </div>
   );
 };

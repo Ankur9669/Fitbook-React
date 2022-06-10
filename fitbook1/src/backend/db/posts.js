@@ -42,6 +42,7 @@ export const posts = [
       {
         _id: uuid(),
         email: "priya3112@gmail.com",
+        username: "Priya Patel",
         profileImage:
           "https://res.cloudinary.com/dylkclyom/image/upload/v1652721963/photo-1633332755192-727a05c4013d_qo2tty.jpg",
         text: "Interesting",
@@ -54,6 +55,7 @@ export const posts = [
       {
         _id: uuid(),
         email: "gankur860@gmail.com",
+        username: "Ankur Gupta",
         profileImage:
           "https://res.cloudinary.com/dylkclyom/image/upload/v1652722040/596_jes87l.jpg",
         text: "Wow!",
@@ -113,6 +115,7 @@ export const posts = [
       {
         _id: uuid(),
         email: "priya3112@gmail.com",
+        username: "Priya Patel",
         profileImage:
           "https://res.cloudinary.com/dylkclyom/image/upload/v1652722029/latest_ccm17c.jpg",
         text: "Haha, I know the feeling! *grimace*",
@@ -125,6 +128,7 @@ export const posts = [
       {
         _id: uuid(),
         email: "gankur860@gmail.com",
+        username: "Ankur Gupta",
         profileImage:
           "https://res.cloudinary.com/dylkclyom/image/upload/v1652721946/photo-1580489944761-15a19d654956_dekeb7.jpg",
         text: "Hey, why don't you go out for a change! xD",
