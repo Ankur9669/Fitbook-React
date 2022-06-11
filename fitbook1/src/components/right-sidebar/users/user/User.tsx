@@ -35,7 +35,7 @@ const User = (props: UserProps) => {
     const { data, success, message } = await unfollowUser(email);
     if (success) {
       dispatch(authActions.setUser({ user: data, userLoggedInStatus: true }));
-      showToast("SUCCESS", "Followed User");
+      showToast("SUCCESS", "Unfollowed User");
     } else {
       showToast("ERROR", message);
     }
