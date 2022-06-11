@@ -28,8 +28,8 @@ const Homepage = () => {
   useEffect(() => {
     console.log(user);
   }, [user]);
-
   useDocumentTitle("FitBook-Home");
+
   return (
     <div className="app-container">
       {isModalOpen && <CreatePostModal setModalOpen={setModalOpen} />}
