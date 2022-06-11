@@ -6,6 +6,7 @@ const initialState = {
   posts: [],
   loading: false,
   error: "",
+  sortBy: "LATEST",
 };
 
 const loadPosts = createAsyncThunk("posts/loadPosts", async () => {
@@ -23,6 +24,9 @@ const postsSlice = createSlice({
   reducers: {
     setPosts: (state, action) => {
       state.posts = action.payload.posts;
+    },
+    setSortBy: (state, action) => {
+      state.sortBy = action.payload.sortBy;
     },
   },
   extraReducers: (builder) => {

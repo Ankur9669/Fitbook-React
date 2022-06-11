@@ -22,6 +22,7 @@ import {
   authActions,
 } from "./index";
 import { PostProps } from "./PostProps";
+import { getSortedPosts } from "../../../util/getSortedPosts";
 
 const Post = (props: PostProps) => {
   const { post } = props;
@@ -39,6 +40,7 @@ const Post = (props: PostProps) => {
 
   // TODO change any type
   const { user }: any = useAppSelector((store) => store.auth);
+  const { sortBy }: any = useAppSelector((store) => store.posts);
   const userEmail = user.email;
   const userBookmarks = user.bookmarks;
   const navigate = useNavigate();
@@ -57,7 +59,8 @@ const Post = (props: PostProps) => {
       const { data, success, message } = await addPostLike(_id);
 
       if (success) {
-        dispatch(postsActions.setPosts({ posts: data }));
+        const sortedPosts = getSortedPosts(data, sortBy);
+        dispatch(postsActions.setPosts({ posts: sortedPosts }));
         showToast("SUCCESS", "Post Liked Successfully");
       } else {
         showToast("ERROR", message);
@@ -66,7 +69,9 @@ const Post = (props: PostProps) => {
       const { data, success, message } = await removePostLike(_id);
 
       if (success) {
-        dispatch(postsActions.setPosts({ posts: data }));
+        const sortedPosts = getSortedPosts(data, sortBy);
+        dispatch(postsActions.setPosts({ posts: sortedPosts }));
+        // dispatch(postsActions.setPosts({ posts: data }));
         showToast("SUCCESS", "Post UnLiked Successfully");
       } else {
         showToast("ERROR", message);

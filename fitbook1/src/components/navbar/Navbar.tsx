@@ -1,10 +1,24 @@
 import React from "react";
-import Fitbook from "../../assets/images/fitBook.svg";
+import {
+  Fitbook,
+  PrimaryButton,
+  Link,
+  useAppSelector,
+  useAppDispatch,
+  authActions,
+  showToast,
+} from "./index";
 import "./navbar.css";
-import PrimaryButton from "../../components/buttons/PrimaryButton";
-import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const { isUserLoggedIn } = useAppSelector((store) => store.auth);
+  const dispatch = useAppDispatch();
+
+  const handleLogoutClick = () => {
+    dispatch(authActions.logoutUser());
+    localStorage.removeItem("token");
+    showToast("SUCCESS", "User Logged out");
+  };
   return (
     <div className="navbar">
       <div className="navbar-app-container">
@@ -24,9 +38,13 @@ const Navbar = () => {
           />
         </div>
         <div className="icons-container">
-          <Link to="/login">
-            <PrimaryButton buttonText="Login" />
-          </Link>
+          {isUserLoggedIn ? (
+            <PrimaryButton buttonText="Logout" onClick={handleLogoutClick} />
+          ) : (
+            <Link to="/login">
+              <PrimaryButton buttonText="Login" />
+            </Link>
+          )}
         </div>
       </div>
       <div className="mobile-searchbar-container">

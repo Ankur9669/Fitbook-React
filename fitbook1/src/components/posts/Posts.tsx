@@ -1,10 +1,23 @@
 import React, { useEffect } from "react";
-import Post from "./post/Post";
-import { useAppSelector } from "../../app/hooks";
+import {
+  Post,
+  useAppDispatch,
+  useAppSelector,
+  getSortedPosts,
+  postsActions,
+} from "./index";
 import { Post as Posttype } from "./post/PostProps";
 
 const Posts = () => {
-  const { posts, loading, error } = useAppSelector((store) => store.posts);
+  const { posts, sortBy } = useAppSelector((store) => store.posts);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (posts.length > 0) {
+      const sortedPosts = getSortedPosts(posts, sortBy);
+      dispatch(postsActions.setPosts({ posts: sortedPosts }));
+    }
+  }, []);
 
   return (
     <div className="posts-container">

@@ -201,8 +201,9 @@ export const removePostFromBookmarkHandler = function (schema, request) {
 
 export const followUserHandler = function (schema, request) {
   const user = requiresAuth.call(this, request);
-  const { followUserId } = request.params;
-  const followUser = schema.users.findBy({ _id: followUserId }).attrs;
+  const { followUserEmail } = request.params;
+
+  const followUser = schema.users.findBy({ email: followUserEmail }).attrs;
   try {
     if (!user) {
       return new Response(
@@ -216,7 +217,7 @@ export const followUserHandler = function (schema, request) {
       );
     }
     const isFollowing = user.following.some(
-      (currUser) => currUser._id === followUser._id
+      (currUser) => currUser.email === followUser.email
     );
 
     if (isFollowing) {
@@ -232,11 +233,11 @@ export const followUserHandler = function (schema, request) {
       followers: [...followUser.followers, { ...user }],
     };
     this.db.users.update(
-      { _id: user._id },
+      { email: user.email },
       { ...updatedUser, updatedAt: formatDate() }
     );
     this.db.users.update(
-      { _id: followUser._id },
+      { email: followUser.email },
       { ...updatedFollowUser, updatedAt: formatDate() }
     );
     return new Response(
@@ -262,8 +263,8 @@ export const followUserHandler = function (schema, request) {
 
 export const unfollowUserHandler = function (schema, request) {
   const user = requiresAuth.call(this, request);
-  const { followUserId } = request.params;
-  const followUser = this.db.users.findBy({ _id: followUserId });
+  const { followUserEmail } = request.params;
+  const followUser = this.db.users.findBy({ email: followUserEmail });
   try {
     if (!user) {
       return new Response(
@@ -276,8 +277,9 @@ export const unfollowUserHandler = function (schema, request) {
         }
       );
     }
+
     const isFollowing = user.following.some(
-      (currUser) => currUser._id === followUser._id
+      (currUser) => currUser.email === followUser.email
     );
 
     if (!isFollowing) {
@@ -287,21 +289,21 @@ export const unfollowUserHandler = function (schema, request) {
     const updatedUser = {
       ...user,
       following: user.following.filter(
-        (currUser) => currUser._id !== followUser._id
+        (currUser) => currUser.email !== followUser.email
       ),
     };
     const updatedFollowUser = {
       ...followUser,
       followers: followUser.followers.filter(
-        (currUser) => currUser._id !== user._id
+        (currUser) => currUser.email !== user.email
       ),
     };
     this.db.users.update(
-      { _id: user._id },
+      { email: user.email },
       { ...updatedUser, updatedAt: formatDate() }
     );
     this.db.users.update(
-      { _id: followUser._id },
+      { email: followUser.email },
       { ...updatedFollowUser, updatedAt: formatDate() }
     );
     return new Response(

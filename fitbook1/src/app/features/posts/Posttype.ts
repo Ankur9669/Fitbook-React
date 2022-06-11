@@ -8,8 +8,8 @@ export type Poststype = {
       dislikedBy: [];
     };
     username: string;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
   }[];
 };
 
@@ -23,7 +23,7 @@ export type Posttype = {
   };
   username: string;
   email: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
   comments: [];
 };
