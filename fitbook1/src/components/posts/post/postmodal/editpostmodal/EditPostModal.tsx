@@ -1,18 +1,35 @@
-import React, { useEffect, useState } from "react";
-import "./editpostmodal.css";
-import PrimaryButton from "../../../../buttons/PrimaryButton";
-import Avatar from "../../../../../assets/images/avatar.svg";
-import Picker from "emoji-picker-react";
-import { FaSmile } from "../../../../../assets/icons/icons";
+import {
+  React,
+  useEffect,
+  useState,
+  PrimaryButton,
+  Avatar,
+  Picker,
+  FaSmile,
+} from "./index";
 import { EditPostModalProps } from "./EditPostModalProps";
+import "./editpostmodal.css";
+import {
+  showToast,
+  useAppDispatch,
+} from "../../../../centercontent/createpost";
+import { postsActions } from "../../../../centercontent/createpost";
+import { editPost } from "../../../../../util/api/editPost";
+import { useAppSelector } from "../../../../centercontent/createpost";
 
 const EditPostModal = (props: EditPostModalProps) => {
-  const { setEditPostModalOpen, postContent } = props;
+  const { setEditPostModalOpen, postContent, postId } = props;
   const wordsLimit = 250;
   const [remainingWords, setRemainingWords] = useState(wordsLimit);
   const [isPostDisable, setPostDisabled] = useState(true);
   const [isEmojiPickerOpen, setEmojiPickerOpen] = useState(false);
   const [postText, setPostText] = useState(postContent);
+  const dispatch = useAppDispatch();
+
+  //TODO change any type
+  const { user }: any = useAppSelector((store) => store.auth);
+  const userName = user.firstName + user.lastName;
+  const userEmail = user.email;
 
   const onChangeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     let currentText = e.target.value;
@@ -34,7 +51,25 @@ const EditPostModal = (props: EditPostModalProps) => {
     setPostText((postText) => postText + emojiObject.emoji);
   };
 
-  const handleCreatePostClick = (e: React.MouseEvent<HTMLButtonElement>) => {};
+  const handleEditPostClick = async (
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    e.stopPropagation();
+    const { data, success, message } = await editPost(
+      postId,
+      postText,
+      userEmail,
+      userName
+    );
+
+    if (success) {
+      dispatch(postsActions.setPosts({ posts: data }));
+      showToast("SUCCESS", "Post edited Successfully");
+      setEditPostModalOpen(false);
+    } else {
+      showToast("ERROR", message);
+    }
+  };
 
   const stopPropagation = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -90,7 +125,7 @@ const EditPostModal = (props: EditPostModalProps) => {
             <PrimaryButton
               buttonText="edit"
               isDisabled={isPostDisable}
-              onClick={handleCreatePostClick}
+              onClick={handleEditPostClick}
             />
           </div>
         </div>

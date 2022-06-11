@@ -41,6 +41,18 @@
 .post-more-icon:hover {
     color: var(--primary-color);
 }
+.post-liked {
+    color: var(--primary-color);
+}
+.post-unliked {
+    color: var(--color-black);
+}
+.post-bookmarked {
+    color: var(--primary-color);
+}
+.post-unbookmarked {
+    color: var(--color-black);
+}
 .post-buttons-container {
     display: flex;
     justify-content: space-between;

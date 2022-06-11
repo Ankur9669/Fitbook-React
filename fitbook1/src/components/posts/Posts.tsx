@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Post from "./post/Post";
 import { useAppSelector } from "../../app/hooks";
 import { Post as Posttype } from "./post/PostProps";

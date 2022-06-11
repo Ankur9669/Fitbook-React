@@ -1,24 +1,16 @@
-// export type PostProps = {
-//   userName: string;
-//   postContent: string;
-//   postLikes: string;
-//   postComments: string;
-// };
-
 export type Post = {
   _id: string;
   postImage?: null | string;
   postContent: string;
   likes: {
     likeCount: number;
-    likedBy: [
-      {
-        firstName: string;
-        lastName: string;
-        username: string;
-        profileImage: string;
-      }
-    ];
+    likedBy: {
+      firstName: string;
+      lastName: string;
+      email: string;
+      profileImage: string;
+    }[];
+
     dislikedBy: [];
   };
   username: string;

@@ -1,7 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  user: {},
+type UserType = {
+  user: {
+    bookmarks: [];
+    createdAt: string;
+    email: string;
+    firstName: string;
+    followers: [];
+    following: [];
+    id: string;
+    lastName: string;
+    password: string;
+    updatedAt: string;
+    _id: string;
+  };
+};
+const initialState: UserType = {
+  user: {
+    bookmarks: [],
+    createdAt: "",
+    email: "",
+    firstName: "",
+    followers: [],
+    following: [],
+    id: "",
+    lastName: "",
+    password: "",
+    updatedAt: "",
+    _id: "",
+  },
 };
 
 const authSlice = createSlice({
@@ -10,6 +37,9 @@ const authSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       state.user = action.payload;
+    },
+    setBookmarks: (state, action) => {
+      state.user.bookmarks = action.payload.bookmarks;
     },
   },
 });

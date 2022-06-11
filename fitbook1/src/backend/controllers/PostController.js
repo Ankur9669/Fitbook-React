@@ -124,7 +124,7 @@ export const editPostHandler = function (schema, request) {
     const postId = request.params.postId;
     const { postData } = JSON.parse(request.requestBody);
     let post = schema.posts.findBy({ _id: postId }).attrs;
-    if (post.username !== user.username) {
+    if (post.email !== user.email) {
       return new Response(
         400,
         {},
@@ -230,8 +230,9 @@ export const dislikePostHandler = function (schema, request) {
     }
     post.likes.likeCount -= 1;
     const updatedLikedBy = post.likes.likedBy.filter(
-      (currUser) => currUser._id !== user._id
+      (currUser) => currUser.email !== user.email
     );
+
     post.likes.dislikedBy.push(user);
     post = { ...post, likes: { ...post.likes, likedBy: updatedLikedBy } };
     this.db.posts.update({ _id: postId }, { ...post, updatedAt: formatDate() });
@@ -267,7 +268,7 @@ export const deletePostHandler = function (schema, request) {
     }
     const postId = request.params.postId;
     let post = schema.posts.findBy({ _id: postId }).attrs;
-    if (post.username !== user.username) {
+    if (post.email !== user.email) {
       return new Response(
         400,
         {},
