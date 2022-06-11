@@ -39,8 +39,8 @@ const Sort = () => {
           onClick={handleTrendingClick}
         />
         <select className="filter-posts" onChange={handleChange}>
-          <option value="oldest">Oldest First</option>
           <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
         </select>
       </div>
     </div>

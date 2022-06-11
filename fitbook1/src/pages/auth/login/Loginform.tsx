@@ -42,7 +42,7 @@ function Loginform() {
       );
 
       if (success) {
-        dispatch(authActions.setUser(data));
+        dispatch(authActions.setUser({ user: data, userLoggedInStatus: true }));
         showToast("SUCCESS", "Login successfull");
         navigate("/");
       } else {
@@ -58,7 +58,7 @@ function Loginform() {
     );
 
     if (success) {
-      dispatch(authActions.setUser(data));
+      dispatch(authActions.setUser({ user: data, userLoggedInStatus: true }));
       navigate("/");
     } else {
       showToast("ERROR", message);

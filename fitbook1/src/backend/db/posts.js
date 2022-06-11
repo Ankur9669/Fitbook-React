@@ -209,6 +209,7 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
+    username: "Priya Patel",
     email: "priya3112@gmail.com",
     profileImage:
       "https://res.cloudinary.com/dylkclyom/image/upload/v1652859048/DSC07033_jomlkt.jpg",

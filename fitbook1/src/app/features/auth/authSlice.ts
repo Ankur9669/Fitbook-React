@@ -14,6 +14,7 @@ type UserType = {
     updatedAt: string;
     _id: string;
   };
+  isUserLoggedIn: boolean;
 };
 const initialState: UserType = {
   user: {
@@ -29,6 +30,7 @@ const initialState: UserType = {
     updatedAt: "",
     _id: "",
   },
+  isUserLoggedIn: false,
 };
 
 const authSlice = createSlice({
@@ -36,10 +38,15 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      state.user = action.payload;
+      state.user = action.payload.user;
+      state.isUserLoggedIn = action.payload.userLoggedInStatus;
     },
     setBookmarks: (state, action) => {
       state.user.bookmarks = action.payload.bookmarks;
+    },
+    logoutUser: (state) => {
+      state.user = initialState.user;
+      state.isUserLoggedIn = false;
     },
   },
 });

@@ -49,7 +49,7 @@ function SignupForm() {
       return;
     }
     if (success) {
-      dispatch(authActions.setUser(data));
+      dispatch(authActions.setUser({ user: data, userLoggedInStatus: true }));
       showToast("SUCCESS", "Sign up successfull");
       navigate("/");
     } else {

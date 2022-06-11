@@ -1,19 +1,18 @@
 import React, { ReactElement } from "react";
-import { Navigate, useLocation } from "react-router-dom";
 import { RequiredAuthProps } from "./RequiredAuthProps";
+import { Navigate, useLocation, useAppSelector } from "./index";
 
 // TODO change any
 const RequireAuth: any = (props: RequiredAuthProps) => {
-  const token = localStorage.getItem("token");
   const { children } = props;
   const location = useLocation();
+  const { isUserLoggedIn } = useAppSelector((store) => store.auth);
 
-  return token == null ? (
+  return !isUserLoggedIn ? (
     <Navigate to="/login" replace state={{ from: location }} />
   ) : (
     children
   );
-  return <div>RequireAuth</div>;
 };
 
 export default RequireAuth;
