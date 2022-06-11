@@ -75,7 +75,7 @@ const Post = (props: PostProps) => {
   };
 
   const handleCommentIconClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
+    // e.stopPropagation();
   };
 
   const handleBookmarkIconClick = async (e: React.MouseEvent) => {

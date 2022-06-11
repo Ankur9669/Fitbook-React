@@ -15,13 +15,15 @@ export type Poststype = {
 
 export type Posttype = {
   _id: string;
-  content: string;
+  postContent: string;
   likes: {
     likeCount: number;
     likedBy: [];
     dislikedBy: [];
   };
   username: string;
+  email: string;
   createdAt: Date;
   updatedAt: Date;
+  comments: [];
 };

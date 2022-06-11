@@ -1,29 +1,85 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./singlepost.css";
-import PrimaryButton from "../../buttons/PrimaryButton";
 import {
+  PrimaryButton,
   IoChevronBack,
   AiFillHeart,
-  AiOutlineHeart,
   BiCommentDetail,
   BsBookmark,
   FiMoreHorizontal,
   FaUserCircle,
-} from "../../../assets/icons/icons";
-import Avatar from "../../../assets/images/avatar.svg";
-import Comment from "./comment/Comment";
-import { useNavigate } from "react-router";
+  Avatar,
+  Comment,
+  useNavigate,
+  useParams,
+} from "./index";
+import { getSinglePost } from "../../../util/api/getSinglePost";
+import { showToast } from "../../../util/toasts/showToast";
+import { Posttype } from "../../../app/features/posts/Posttype";
+import { CommentType } from "../../../util/types/CommentType";
+import { addComment } from "../../../util/api/addComment";
+import { useAppSelector } from "../../../app/hooks";
+import { findLiked } from "../../../util/findLiked";
+import { findBookMarked } from "../../../util/findBookMarked";
 
 const Singlepost = () => {
-  const [replyText, setReplyText] = useState("");
+  const wordsCount = 250;
+  const [replyText, setReplyText] = useState<string>("");
+  const [remainingWords, setRemainingWords] = useState<number>(wordsCount);
+  // TODO change any type
+  const [post, setPost] = useState<any>({});
+  const [postComments, setPostComments] = useState<[] | undefined>(
+    post?.comments
+  );
+  const { user }: any = useAppSelector((store) => store.auth);
+  const { postId } = useParams();
+  const userName = `${user.firstName} ${user.lastName}`;
+  const userEmail = user.email;
+
+  const userBookmarks = user.bookmarks;
+  // let isLikedPost = findLiked(userEmail, likes.likedBy);
+  // let isPostBookMarked = findBookMarked(_id, userBookmarks);
+
   const navigate = useNavigate();
 
   const onReplyTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setReplyText(e.target.value);
+    setRemainingWords(wordsCount - e.target.value.length);
   };
   const handleBackButtonClick = () => {
     navigate(-1);
   };
+  const handleReplyClick = async () => {
+    if (postId !== undefined) {
+      const { data, success, message } = await addComment(
+        postId,
+        replyText,
+        userName
+      );
+
+      if (success) {
+        setPostComments(data);
+        showToast("SUCCESS", "Comment Added Successflly");
+      } else {
+        showToast("ERROR", message);
+      }
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      if (postId != undefined) {
+        const { data, success, message } = await getSinglePost(postId);
+        if (success) {
+          setPost(data);
+          setPostComments(data?.comments);
+        } else {
+          showToast("ERROR", message);
+        }
+      }
+    })();
+  }, []);
+
   return (
     <div className="single-post-container">
       <PrimaryButton
@@ -43,21 +99,23 @@ const Singlepost = () => {
           </div>
 
           <div className="single-post-content-container">
-            <h3 className="single-post-header">Ankur Gupta</h3>
-            <p className="single-post-content">
-              asdddd asd aaaaaaa ssssssss aaaaaaaa ssssss
-            </p>
+            <h3 className="single-post-header">{post?.username}</h3>
+            <p className="single-post-content">{post?.postContent}</p>
             <p className="single-post-timeline font-extra-small">a month ago</p>
           </div>
         </div>
         <div className="single-post-buttons-container">
           <div className="single-post-button-container">
             <AiFillHeart className="single-post-icons single-post-button" />
-            <p className="single-post-button-text font-medium">20</p>
+            <p className="single-post-button-text font-medium">
+              {post?.likes?.likeCount}
+            </p>
           </div>
           <div className="single-post-button-container">
             <BiCommentDetail className="single-post-icons single-post-button" />
-            <p className="single-post-button-text font-medium">10</p>
+            <p className="single-post-button-text font-medium">
+              {post?.comments?.length}
+            </p>
           </div>
           <div className="single-post-button-container">
             <BsBookmark className="single-post-icons single-post-button" />
@@ -69,32 +127,28 @@ const Singlepost = () => {
             <FaUserCircle className="single-post-avatar" />
             <input
               placeholder="Enter your reply"
-              className="single-post-reply"
+              className="single-post-reply font-medium"
               value={replyText}
               onChange={onReplyTextChange}
             />
           </div>
         </div>
         <div className="single-post-reply-button-container">
-          <p className="single-post-words-count font-normal">250</p>
-          <PrimaryButton buttonText="Reply" />
+          <p className="single-post-words-count font-medium">
+            {remainingWords}
+          </p>
+          <PrimaryButton buttonText="Reply" onClick={handleReplyClick} />
         </div>
 
-        <Comment
-          userName="Ankur Gupta"
-          commentContent="You can do everything"
-          commentTime="a month ago"
-        />
-        <Comment
-          userName="Ankur Gupta"
-          commentContent="You can do everything You can do everything"
-          commentTime="a month ago"
-        />
-        <Comment
-          userName="Ankur Gupta"
-          commentContent="You can do everything You can do everything You can do everything"
-          commentTime="a month ago"
-        />
+        {postComments?.map((comment: CommentType) => {
+          return (
+            <Comment
+              userName={comment.username}
+              commentContent={comment.text}
+              commentTime="a month ago"
+            />
+          );
+        })}
       </div>
     </div>
   );
