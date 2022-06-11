@@ -12,15 +12,16 @@ import {
   Comment,
   useNavigate,
   useParams,
+  getSinglePost,
+  showToast,
+  addComment,
+  useAppSelector,
+  findLiked,
+  findBookMarked,
 } from "./index";
-import { getSinglePost } from "../../../util/api/getSinglePost";
-import { showToast } from "../../../util/toasts/showToast";
+
 import { Posttype } from "../../../app/features/posts/Posttype";
 import { CommentType } from "../../../util/types/CommentType";
-import { addComment } from "../../../util/api/addComment";
-import { useAppSelector } from "../../../app/hooks";
-import { findLiked } from "../../../util/findLiked";
-import { findBookMarked } from "../../../util/findBookMarked";
 
 const Singlepost = () => {
   const wordsCount = 250;
@@ -60,6 +61,7 @@ const Singlepost = () => {
       if (success) {
         setPostComments(data);
         showToast("SUCCESS", "Comment Added Successflly");
+        setRemainingWords(wordsCount);
       } else {
         showToast("ERROR", message);
       }

@@ -1,12 +1,14 @@
 import React from "react";
-import Fitbook from "../../assets/images/fitBook.svg";
+import {
+  Fitbook,
+  PrimaryButton,
+  Link,
+  useAppSelector,
+  useAppDispatch,
+  authActions,
+  showToast,
+} from "./index";
 import "./navbar.css";
-import PrimaryButton from "../../components/buttons/PrimaryButton";
-import { Link } from "react-router-dom";
-import { useAppSelector } from "../../app/hooks";
-import { useAppDispatch } from "../../app/hooks";
-import { authActions } from "../../app/features/auth/authSlice";
-import { showToast } from "../../util/toasts/showToast";
 
 const Navbar = () => {
   const { isUserLoggedIn } = useAppSelector((store) => store.auth);

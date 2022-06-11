@@ -6,16 +6,14 @@ import {
   Avatar,
   Picker,
   FaSmile,
+  showToast,
+  useAppDispatch,
+  postsActions,
+  editPost,
+  useAppSelector,
 } from "./index";
 import { EditPostModalProps } from "./EditPostModalProps";
 import "./editpostmodal.css";
-import {
-  showToast,
-  useAppDispatch,
-} from "../../../../centercontent/createpost";
-import { postsActions } from "../../../../centercontent/createpost";
-import { editPost } from "../../../../../util/api/editPost";
-import { useAppSelector } from "../../../../centercontent/createpost";
 
 const EditPostModal = (props: EditPostModalProps) => {
   const { setEditPostModalOpen, postContent, postId } = props;
@@ -66,6 +64,7 @@ const EditPostModal = (props: EditPostModalProps) => {
       dispatch(postsActions.setPosts({ posts: data }));
       showToast("SUCCESS", "Post edited Successfully");
       setEditPostModalOpen(false);
+      setRemainingWords(wordsLimit);
     } else {
       showToast("ERROR", message);
     }
