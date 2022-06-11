@@ -25,6 +25,10 @@ const Homepage = () => {
     dispatch(loadPosts());
   }, []);
 
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
   useDocumentTitle("FitBook-Home");
   return (
     <div className="app-container">

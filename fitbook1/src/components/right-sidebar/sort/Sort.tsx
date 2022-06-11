@@ -21,6 +21,7 @@ const Sort = () => {
       dispatch(postsActions.setSortBy({ sortBy: "LATEST" }));
     }
   };
+
   const handleTrendingClick = () => {
     dispatch(postsActions.setSortBy({ sortBy: "TRENDING" }));
   };
@@ -29,6 +30,7 @@ const Sort = () => {
     const sortedPosts = getSortedPosts(posts, sortBy);
     dispatch(postsActions.setPosts({ posts: sortedPosts }));
   }, [sortBy]);
+
   return (
     <div>
       <h3 className="right-sidebar-heading">Sort By</h3>

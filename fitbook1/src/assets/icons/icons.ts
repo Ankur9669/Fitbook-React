@@ -12,7 +12,7 @@ import {
 import { MdExplore } from "react-icons/md";
 import { BsFillBookmarkFill, BsBookmark } from "react-icons/bs";
 import { CgProfile, CgTrending } from "react-icons/cg";
-import { RiMessage2Fill } from "react-icons/ri";
+import { RiMessage2Fill, RiUserUnfollowFill } from "react-icons/ri";
 import { IoPersonAddSharp, IoAddOutline, IoChevronBack } from "react-icons/io5";
 import { FaSmile } from "react-icons/fa";
 import { BiCommentDetail } from "react-icons/bi";
@@ -38,6 +38,7 @@ export {
   CgProfile,
   CgTrending,
   RiMessage2Fill,
+  RiUserUnfollowFill,
   IoPersonAddSharp,
   IoChevronBack,
   FaSmile,
