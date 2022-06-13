@@ -2,7 +2,7 @@ import CreatePost from "./createpost/CreatePost";
 import Posts from "../../components/posts/Posts";
 import { useLocation, useParams } from "react-router";
 import { MdPendingActions } from "react-icons/md";
-import EmptyBookmark from "./emptybookmark/EmptyBookmark";
+import Bookmark from "./bookmark/Bookmark";
 import Profile from "./profile/Profile";
 
 export {
@@ -11,6 +11,6 @@ export {
   useLocation,
   useParams,
   MdPendingActions,
-  EmptyBookmark,
+  Bookmark,
   Profile,
 };

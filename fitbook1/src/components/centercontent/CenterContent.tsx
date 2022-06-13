@@ -5,10 +5,11 @@ import {
   Posts,
   useLocation,
   MdPendingActions,
-  EmptyBookmark,
+  Bookmark,
   Profile,
   useParams,
 } from "./index";
+import Messages from "./messages/Messages";
 import SinglePost from "./singlepost/SinglePost";
 
 const CenterContent = () => {
@@ -21,10 +22,13 @@ const CenterContent = () => {
     <div className="center-content">
       {/* <Loader /> */}
       {pathName === "/" && <CreatePost setModalOpen={null} />}
-      {pathName === "/bookmarks" && <EmptyBookmark />}
+      {pathName === "/bookmarks" && <Bookmark />}
       {pathName === "/profile" && <Profile />}
+      {pathName === "/messages" && <Messages />}
       {postId !== undefined && <SinglePost />}
-      {postId === undefined && <Posts />}
+      {postId === undefined &&
+        pathName !== "/bookmarks" &&
+        pathName !== "/messages" && <Posts />}
     </div>
   );
 };
