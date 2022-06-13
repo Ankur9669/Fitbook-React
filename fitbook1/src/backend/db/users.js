@@ -13,6 +13,8 @@ export const users = [
     userId: "Ankur9669",
     email: "gankur860@gmail.com",
     password: "ankurgupta123",
+    bio: "I am a web developer",
+    website: "",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     followers: [
@@ -32,6 +34,8 @@ export const users = [
     lastName: "Patel",
     userId: "priya3112",
     email: "priya3112@gmail.com",
+    bio: "I am a web developer",
+    website: "",
     password: "priya123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -53,6 +57,8 @@ export const users = [
     userId: "Asmit1006",
     email: "asmit123@gmail.com",
     password: "asmit123",
+    bio: "I am a web developer",
+    website: "",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     followers: [

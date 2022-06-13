@@ -23,7 +23,7 @@
     cursor: pointer;
 }
 .edit-profile-button:hover {
-    background-color: var(--background-dark-color);
+    background-color: var(--dark-background-color);
 }
 .user-image-container {
     display: flex;
@@ -42,7 +42,8 @@
     margin: -3rem 0 1rem 0;
 }
 .profile-user-bio {
-    margin: 1rem 0 0.5rem 0;
+    margin: 1rem 1rem 0.5rem 1rem;
+    text-align: center;
 }
 .user-info {
     display: flex;

@@ -1,5 +1,15 @@
 import React, { useState } from "react";
-import { AiOutlineClose, Avatar, PrimaryButton } from "./index";
+import {
+  AiOutlineClose,
+  Avatar,
+  PrimaryButton,
+  useAppDispatch,
+  useAppSelector,
+  showToast,
+  editUser,
+  authActions,
+} from "./index";
+
 import { EditProfileModalProps } from "./EditProfileModalProps";
 import "./editprofilemodal.css";
 
@@ -13,13 +23,20 @@ type FormDetailsType = {
 
 const EditProfileModal = (props: EditProfileModalProps) => {
   const { setEditProfileModalOpen } = props;
+  //TODO change any
+  const { user }: any = useAppSelector((store) => store.auth);
+  const firstName = user.firstName;
+  const lastName = user.lastName;
+  const bio = user.bio;
+  const website = user.website;
   const [formDetails, setFormDetails] = useState<FormDetailsType>({
-    firstName: "",
-    lastName: "",
-    bio: "",
-    website: "",
+    firstName: firstName,
+    lastName: lastName,
+    bio: bio,
+    website: website,
     isUpdateProfileDisable: true,
   });
+  const dispatch = useAppDispatch();
 
   const stopPropagation = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -34,7 +51,20 @@ const EditProfileModal = (props: EditProfileModalProps) => {
       isUpdateProfileDisable: false,
     });
   };
-  const handleUpdateProfileClick = async () => {};
+  // TODO any
+  const handleUpdateProfileClick = async (e: any) => {
+    e.preventDefault();
+    const { data, success, message } = await editUser(formDetails);
+
+    if (success) {
+      console.log(data);
+      dispatch(authActions.setUser({ user: data, isUserLoggedInStatus: true }));
+      showToast("SUCCESS", "Profile Updated Successfully");
+      setEditProfileModalOpen(false);
+    } else {
+      showToast("ERROR", message);
+    }
+  };
 
   return (
     <div className="edit-profile-modal" onClick={closeModal}>
@@ -49,7 +79,11 @@ const EditProfileModal = (props: EditProfileModalProps) => {
             <p className="font-small">Ankur@9669</p>
           </div>
           <div className="edit-profile-avatar-container">
-            <img src={Avatar} className="img-responsive img-round" />
+            <img
+              src={Avatar}
+              className="img-responsive img-round"
+              alt="user-avatar"
+            />
           </div>
         </header>
 
@@ -112,6 +146,7 @@ const EditProfileModal = (props: EditProfileModalProps) => {
             buttonText="Update Profile"
             className="update-profile-button"
             isDisabled={formDetails.isUpdateProfileDisable}
+            onClick={handleUpdateProfileClick}
           />
         </form>
       </div>
