@@ -45,7 +45,7 @@ const UserModal = (props: UserModalProps) => {
                   />
                 </div>
               ))
-            : userFollowing.map((user): any => (
+            : userFollowing.map((user) => (
                 <div key={user._id}>
                   <User
                     userName={`${user.firstName} ${user.lastName}`}
