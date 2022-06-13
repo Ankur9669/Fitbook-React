@@ -1,16 +1,18 @@
 import React from "react";
 import "./user.css";
 import Avatar from "../../../../../assets/images/avatar.svg";
+import { UserType } from "../UserType";
 
-const User = () => {
+const User = (props: UserType) => {
+  const { userName, userId } = props;
   return (
     <div className="user">
       <div className="user-avatar-container">
         <img src={Avatar} alt="user" className="img-responsive img-round" />
       </div>
       <div className="user-content-container">
-        <p className="font-normal weight-bold">Ankur Gupta</p>
-        <p className="font-small">@Ankur9669</p>
+        <p className="font-normal weight-bold">{userName}</p>
+        <p className="font-small">{userId}</p>
       </div>
     </div>
   );
