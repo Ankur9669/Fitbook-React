@@ -13,6 +13,7 @@ import SignUp from "./pages/auth/signup/SignUp";
 import { useDocumentTitle } from "./util/change-document-title";
 import SinglePost from "./pages/singlepost/SinglePost";
 import RequireAuth from "./util/RequireAuth/RequireAuth";
+import Messages from "./pages/messages/Messages";
 
 function App() {
   useDocumentTitle("FitBook-Home");
@@ -33,6 +34,7 @@ function App() {
         <Route path="/explore" element={<Explore />} />
         <Route path="/bookmarks" element={<Bookmark />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/messages" element={<Messages />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/post/:postId" element={<SinglePost />} />

@@ -1,0 +1,7 @@
+.messages-container {
+    height: 100vh;
+}
+.messages-text {
+    text-align: center;
+    margin: 5rem 1rem 0 1rem;
+}

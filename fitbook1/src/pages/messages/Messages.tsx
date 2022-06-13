@@ -1,3 +1,5 @@
+import React from "react";
+import "./messages.css";
 import {
   LeftSideBar,
   RightSidebar,
@@ -6,26 +8,14 @@ import {
   CreatePostModal,
   FloatingButton,
   useState,
-  useEffect,
   useAppDispatch,
   useAppSelector,
-  loadPosts,
+  useEffect,
   useDocumentTitle,
 } from "./index";
 
-const Homepage = () => {
+const Messages = () => {
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
-
-  // TODO remove these
-  const { user } = useAppSelector((state) => state.auth);
-  const { posts } = useAppSelector((state) => state.posts);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(loadPosts());
-  }, []);
-
-  useDocumentTitle("FitBook-Home");
 
   return (
     <div className="app-container">
@@ -39,4 +29,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default Messages;
