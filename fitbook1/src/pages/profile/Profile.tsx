@@ -8,8 +8,8 @@ import {
   getUserPosts,
   postsActions,
 } from "./index";
-
 import "./profile.css";
+
 const Profile = () => {
   const [isUsersModalOpen, setUsersModalOpen] = useState(false);
   // TODO remove any

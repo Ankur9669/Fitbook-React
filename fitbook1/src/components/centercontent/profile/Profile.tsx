@@ -7,17 +7,30 @@ import {
   UserModal,
   useAppSelector,
 } from "./index";
+import EditProfileModal from "./editprofilemodal/EditProfileModal";
 
 const Profile = () => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isEditProfileModalOpen, setEditProfileModalOpen] =
+    useState<boolean>(false);
   const { user }: any = useAppSelector((store) => store.auth);
   const userId = user?.userId == undefined ? "unknown" : user.userId;
   const username = `${user.firstName} ${user.lastName}`;
   const followers = user.followers;
   const following = user.following;
 
+  const handleEditProfileButtonClick = async () => {
+    setEditProfileModalOpen(true);
+  };
+
   return (
     <div className="profile-container">
+      <button
+        className="edit-profile-button"
+        onClick={handleEditProfileButtonClick}
+      >
+        Edit
+      </button>
       <div className="profile-background"></div>
       <div className="profile-content-container">
         <div className="user-image-container">
@@ -48,6 +61,14 @@ const Profile = () => {
       {isModalOpen &&
         ReactDOM.createPortal(
           <UserModal setModalOpen={setModalOpen} />,
+          document.getElementById("modal")!
+        )}
+
+      {isEditProfileModalOpen &&
+        ReactDOM.createPortal(
+          <EditProfileModal
+            setEditProfileModalOpen={setEditProfileModalOpen}
+          />,
           document.getElementById("modal")!
         )}
     </div>
