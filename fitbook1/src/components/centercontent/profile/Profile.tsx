@@ -1,11 +1,20 @@
 import "./profile.css";
-import { Avatar, PrimaryButton } from "./index";
-import { useState } from "react";
-import ReactDOM from "react-dom";
-import UserModal from "./usermodal/UserModal";
+import {
+  Avatar,
+  PrimaryButton,
+  useState,
+  ReactDOM,
+  UserModal,
+  useAppSelector,
+} from "./index";
 
 const Profile = () => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const { user }: any = useAppSelector((store) => store.auth);
+  const userId = user?.userId == undefined ? "unknown" : user.userId;
+  const username = `${user.firstName} ${user.lastName}`;
+  const followers = user.followers;
+  const following = user.following;
 
   return (
     <div className="profile-container">
@@ -14,8 +23,8 @@ const Profile = () => {
         <div className="user-image-container">
           <img src={Avatar} alt="user-avatar" className="user-image" />
         </div>
-        <h3 className="profile-user-id font-medium-large">@Ankur9669</h3>
-        <p className="profile-user-name font-medium">Ankur Gupta</p>
+        <h3 className="profile-user-id font-medium-large">{userId}</h3>
+        <p className="profile-user-name font-medium">{username}</p>
         <p className="profile-user-bio font-medium">
           A Web developer from jabalpur
         </p>
@@ -26,14 +35,14 @@ const Profile = () => {
           className="font-medium user-item-clickable"
           onClick={() => setModalOpen(true)}
         >
-          Followers: 10
+          Followers: {followers.length}
         </p>
         <p className="font-medium">Posts</p>
         <p
           className="font-medium user-item-clickable"
           onClick={() => setModalOpen(true)}
         >
-          Following: 12
+          Following: {following.length}
         </p>
       </div>
       {isModalOpen &&

@@ -42,9 +42,9 @@ export const getPostHandler = function (schema, request) {
  * */
 
 export const getAllUserPostsHandler = function (schema, request) {
-  const { username } = request.params;
+  const { userEmail } = request.params;
   try {
-    const posts = schema.posts.where({ username })?.models;
+    const posts = schema.posts.where({ email: userEmail })?.models;
     return new Response(200, {}, { posts });
   } catch (error) {
     return new Response(
