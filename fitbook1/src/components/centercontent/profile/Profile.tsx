@@ -1,9 +1,12 @@
 import "./profile.css";
-import { Avatar, PrimaryButton } from "./index";
-import { useState } from "react";
-import ReactDOM from "react-dom";
-import UserModal from "./usermodal/UserModal";
-import { useAppSelector } from "../../../app/hooks";
+import {
+  Avatar,
+  PrimaryButton,
+  useState,
+  ReactDOM,
+  UserModal,
+  useAppSelector,
+} from "./index";
 
 const Profile = () => {
   const [isModalOpen, setModalOpen] = useState(false);

@@ -22,7 +22,6 @@ const Profile = () => {
       const { data, success, message } = await getUserPosts(userEmail);
 
       if (success) {
-        // console.log(data);
         dispatch(postsActions.setPosts({ posts: data }));
       }
     })();
