@@ -5,7 +5,7 @@ import {
   Posts,
   useLocation,
   MdPendingActions,
-  EmptyBookmark,
+  Bookmark,
   Profile,
   useParams,
 } from "./index";
@@ -21,7 +21,7 @@ const CenterContent = () => {
     <div className="center-content">
       {/* <Loader /> */}
       {pathName === "/" && <CreatePost setModalOpen={null} />}
-      {pathName === "/bookmarks" && <EmptyBookmark />}
+      {pathName === "/bookmarks" && <Bookmark />}
       {pathName === "/profile" && <Profile />}
       {postId !== undefined && <SinglePost />}
       {postId === undefined && <Posts />}
