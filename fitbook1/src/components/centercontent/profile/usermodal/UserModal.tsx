@@ -37,7 +37,7 @@ const UserModal = (props: UserModalProps) => {
         <h1 className="user-modal-heading font-large">{userModalHeading}</h1>
         <div className="users-container">
           {userModalHeading === "Followers"
-            ? userFollowers.map((user): any => (
+            ? userFollowers.map((user) => (
                 <div key={user._id}>
                   <User
                     userName={`${user.firstName} ${user.lastName}`}
