@@ -40,7 +40,7 @@ const Post = (props: PostProps) => {
   const [isPostModalOpen, setPostModalOpen] = useState(false);
 
   // TODO change any type
-  const { user }: any = useAppSelector((store) => store.auth);
+  const { user, isUserLoggedIn }: any = useAppSelector((store) => store.auth);
   const { sortBy }: any = useAppSelector((store) => store.posts);
   const userEmail = user.email;
   const userBookmarks = user.bookmarks;
@@ -56,6 +56,11 @@ const Post = (props: PostProps) => {
 
   const handleLikeIconClick = async (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (!isUserLoggedIn) {
+      navigate("/login");
+      showToast("ERROR", "Please Login First");
+      return;
+    }
     if (!isLikedPost) {
       const { data, success, message } = await addPostLike(_id);
 
@@ -86,6 +91,11 @@ const Post = (props: PostProps) => {
 
   const handleBookmarkIconClick = async (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (!isUserLoggedIn) {
+      navigate("/login");
+      showToast("ERROR", "Please Login First");
+      return;
+    }
     if (!isPostBookMarked) {
       const { data, success, message } = await addToBookmark(_id);
 

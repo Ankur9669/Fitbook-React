@@ -23,16 +23,16 @@ function App() {
       <Navbar />
 
       <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/explore" element={<Explore />} />
         <Route
-          path="/"
+          path="/bookmarks"
           element={
             <RequireAuth>
-              <Homepage />
+              <Bookmark />
             </RequireAuth>
           }
         />
-        <Route path="/explore" element={<Explore />} />
-        <Route path="/bookmarks" element={<Bookmark />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/messages" element={<Messages />} />
         <Route path="/login" element={<Login />} />
