@@ -5,6 +5,7 @@ import {
   AiOutlineHeart,
   BiCommentDetail,
   BsBookmark,
+  BsBookmarkFill,
   FiMoreHorizontal,
   Avatar,
   PostModal,
@@ -157,7 +158,7 @@ const Post = (props: PostProps) => {
           <p className="post-button-text font-medium">{comments.length}</p>
         </div>
         <div className="post-button-container">
-          <BsBookmark
+          <BsBookmarkFill
             className={`post-icons post-button ${
               isPostBookMarked ? "post-bookmarked" : "post-unbookmarked"
             }`}

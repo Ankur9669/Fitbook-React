@@ -5,6 +5,7 @@ import {
   BiCommentDetail,
   BsBookmark,
   FiMoreHorizontal,
+  BsBookmarkFill,
 } from "../../../assets/icons/icons";
 
 import PostModal from "./postmodal/PostModal";
@@ -27,6 +28,7 @@ export {
   AiOutlineHeart,
   BiCommentDetail,
   BsBookmark,
+  BsBookmarkFill,
   FiMoreHorizontal,
   PostModal,
   useNavigate,
