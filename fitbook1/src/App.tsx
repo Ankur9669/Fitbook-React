@@ -14,6 +14,7 @@ import { useDocumentTitle } from "./util/change-document-title";
 import SinglePost from "./pages/singlepost/SinglePost";
 import RequireAuth from "./util/RequireAuth/RequireAuth";
 import Messages from "./pages/messages/Messages";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
 
 function App() {
   useDocumentTitle("FitBook-Home");
@@ -38,6 +39,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/post/:postId" element={<SinglePost />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
   );
