@@ -131,7 +131,7 @@ export const bookmarkPostHandler = function (schema, request) {
         { errors: ["This Post is already bookmarked"] }
       );
     }
-    user.bookmarks.push(post);
+    user.bookmarks.push({ _id: post._id });
     this.db.users.update(
       { _id: user._id },
       { ...user, updatedAt: formatDate() }
@@ -277,7 +277,6 @@ export const unfollowUserHandler = function (schema, request) {
         }
       );
     }
-
     const isFollowing = user.following.some(
       (currUser) => currUser.email === followUser.email
     );

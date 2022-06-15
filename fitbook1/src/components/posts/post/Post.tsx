@@ -77,7 +77,6 @@ const Post = (props: PostProps) => {
       if (success) {
         const sortedPosts = getSortedPosts(data, sortBy);
         dispatch(postsActions.setPosts({ posts: sortedPosts }));
-        // dispatch(postsActions.setPosts({ posts: data }));
         showToast("SUCCESS", "Post UnLiked Successfully");
       } else {
         showToast("ERROR", message);
@@ -98,7 +97,6 @@ const Post = (props: PostProps) => {
     }
     if (!isPostBookMarked) {
       const { data, success, message } = await addToBookmark(_id);
-
       if (success) {
         dispatch(authActions.setBookmarks({ bookmarks: data }));
         showToast("SUCCESS", "Post Bookmarked Successfully");
@@ -107,7 +105,6 @@ const Post = (props: PostProps) => {
       }
     } else {
       const { data, success, message } = await removeFromBookmark(_id);
-
       if (success) {
         dispatch(authActions.setBookmarks({ bookmarks: data }));
         showToast("SUCCESS", "Post Removed From Bookmarked Successfully");
