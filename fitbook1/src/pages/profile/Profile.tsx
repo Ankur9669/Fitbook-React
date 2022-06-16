@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import MobileFooter from "../../components/mobile-footer/MobileFooter";
 import {
   LeftSidebar,
   RightSidebar,
@@ -38,6 +39,7 @@ const Profile = () => {
       <LeftSidebar />
       <CenterContent />
       <RightSidebar />
+      <MobileFooter />
     </div>
   );
 };

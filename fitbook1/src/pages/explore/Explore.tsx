@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import MobileFooter from "../../components/mobile-footer/MobileFooter";
 import {
   LeftSidebar,
   RightSidebar,
@@ -21,6 +22,7 @@ const Explore = () => {
       <LeftSidebar setModalOpen={setModalOpen} />
       <CenterContent />
       <RightSidebar />
+      <MobileFooter />
     </div>
   );
 };

@@ -18,8 +18,6 @@ const CenterContent = () => {
   const params = useParams();
   const postId = params?.postId;
 
-  console.log(pathName);
-
   return (
     <div className="center-content">
       {/* <Loader /> */}
