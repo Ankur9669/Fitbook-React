@@ -3,6 +3,7 @@ import {
   Fitbook,
   PrimaryButton,
   Link,
+  useNavigate,
   useAppSelector,
   useAppDispatch,
   authActions,
@@ -12,6 +13,7 @@ import "./navbar.css";
 
 const Navbar = () => {
   const { isUserLoggedIn } = useAppSelector((store) => store.auth);
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const handleLogoutClick = () => {
@@ -19,10 +21,11 @@ const Navbar = () => {
     localStorage.removeItem("token");
     showToast("SUCCESS", "User Logged out");
   };
+
   return (
     <div className="navbar">
       <div className="navbar-app-container">
-        <div className="logo-container">
+        <div className="logo-container" onClick={() => navigate("/")}>
           <img src={Fitbook} alt="fitbook-icon" className="fitbook-logo" />
           <h1 className="logo-text">
             F<span className="logo-sub-text">I</span>T

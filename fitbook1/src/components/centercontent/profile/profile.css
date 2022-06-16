@@ -23,7 +23,7 @@
     cursor: pointer;
 }
 .edit-profile-button:hover {
-    background-color: var(--dark-background-color);
+    background-color: var(--background-color-dark);
 }
 .user-image-container {
     display: flex;

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import MobileFooter from "../../components/mobile-footer/MobileFooter";
 import {
   LeftSidebar,
   RightSidebar,
@@ -7,30 +8,38 @@ import {
   useAppSelector,
   getUserPosts,
   postsActions,
+  useParams,
+  useNavigate,
+  showToast,
 } from "./index";
 import "./profile.css";
 
 const Profile = () => {
-  const [isUsersModalOpen, setUsersModalOpen] = useState(false);
   // TODO remove any
-  const { user }: any = useAppSelector((store) => store.auth);
   const dispatch = useAppDispatch();
+  const { emailId: userEmail } = useParams();
+  const navigate = useNavigate();
 
-  const userEmail = user.email;
   useEffect(() => {
-    (async () => {
-      const { data, success, message } = await getUserPosts(userEmail);
-
-      if (success) {
-        dispatch(postsActions.setPosts({ posts: data }));
-      }
-    })();
+    if (userEmail != undefined) {
+      (async () => {
+        const { data, success, message } = await getUserPosts(userEmail);
+        if (success) {
+          dispatch(postsActions.setPosts({ posts: data }));
+        }
+      })();
+    } else {
+      navigate("/404");
+      showToast("ERROR", "User Not Found");
+    }
   }, []);
+
   return (
     <div className="app-container">
       <LeftSidebar />
       <CenterContent />
       <RightSidebar />
+      <MobileFooter />
     </div>
   );
 };

@@ -20,9 +20,9 @@ export const getAllUsersHandler = function () {
  * */
 
 export const getUserHandler = function (schema, request) {
-  const userId = request.params.userId;
+  const userEmail = request.params.userEmail;
   try {
-    const user = schema.users.findBy({ _id: userId }).attrs;
+    const user = schema.users.findBy({ email: userEmail }).attrs;
     return new Response(200, {}, { user });
   } catch (error) {
     return new Response(
@@ -131,7 +131,7 @@ export const bookmarkPostHandler = function (schema, request) {
         { errors: ["This Post is already bookmarked"] }
       );
     }
-    user.bookmarks.push(post);
+    user.bookmarks.push({ _id: post._id });
     this.db.users.update(
       { _id: user._id },
       { ...user, updatedAt: formatDate() }
@@ -277,7 +277,6 @@ export const unfollowUserHandler = function (schema, request) {
         }
       );
     }
-
     const isFollowing = user.following.some(
       (currUser) => currUser.email === followUser.email
     );

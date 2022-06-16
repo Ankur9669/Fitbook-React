@@ -10,7 +10,7 @@ import {
   AiOutlineClose,
 } from "react-icons/ai";
 import { MdExplore } from "react-icons/md";
-import { BsFillBookmarkFill, BsBookmark } from "react-icons/bs";
+import { BsFillBookmarkFill, BsBookmark, BsBookmarkFill } from "react-icons/bs";
 import { CgProfile, CgTrending } from "react-icons/cg";
 import { RiMessage2Fill, RiUserUnfollowFill } from "react-icons/ri";
 import { IoPersonAddSharp, IoAddOutline, IoChevronBack } from "react-icons/io5";
@@ -34,6 +34,7 @@ export {
   MdExplore,
   BsFillBookmarkFill,
   BsBookmark,
+  BsBookmarkFill,
   BsFilterRight,
   CgProfile,
   CgTrending,

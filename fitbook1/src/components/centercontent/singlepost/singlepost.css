@@ -8,6 +8,18 @@
     border: 1px solid var(--primary-color);
     border-radius: 5px;
 }
+.single-post-liked {
+    color: var(--primary-color);
+}
+.single-post-unliked {
+    color: var(--color-gray);
+}
+.single-post-bookmarked {
+    color: var(--primary-color);
+}
+.single-post-unbookmarked {
+    color: var(--color-gray);
+}
 .single-post-avatar-content-container {
     display: flex;
     padding: 1rem 0;

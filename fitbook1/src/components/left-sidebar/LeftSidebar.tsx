@@ -8,17 +8,21 @@ import {
   RiMessage2Fill,
   NavLink,
 } from "./index";
+import { useAppSelector } from "../../app/hooks";
 import { LeftSidebarProps } from "./LeftSidebarProps";
 import "./left-sidebar.css";
 
 const LeftSidebar = (props: LeftSidebarProps) => {
   const { setModalOpen } = props;
+  const { user, isUserLoggedIn } = useAppSelector((store) => store.auth);
+  const userEmail = user.email;
   const handleCreatePostClick = () => {
     setModalOpen(true);
   };
   const findActive = ({ isActive }: any) => {
     return isActive && "active";
   };
+
   return (
     <div className="left-sidebar-container">
       <div className="left-sidebar">
@@ -38,7 +42,10 @@ const LeftSidebar = (props: LeftSidebarProps) => {
             <h1 className="sidebar-icon-text">Bookmark</h1>
           </NavLink>
 
-          <NavLink to="/profile" className={`sidebar-icon ${findActive}`}>
+          <NavLink
+            to={`/profile/${userEmail}`}
+            className={`sidebar-icon ${findActive}`}
+          >
             <CgProfile className="sidebar-icon-icon" />
             <h1 className="sidebar-icon-text">Profile</h1>
           </NavLink>

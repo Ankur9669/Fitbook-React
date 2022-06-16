@@ -1,4 +1,4 @@
-const findBookMarked = (postId: string, bookmarks: []) => {
+const findBookMarked = (postId: string | undefined, bookmarks: []) => {
   // TODO change any
 
   const foundElement = bookmarks.find((item: any) => {

@@ -5,6 +5,7 @@ import {
   AiOutlineHeart,
   BiCommentDetail,
   BsBookmark,
+  BsBookmarkFill,
   FiMoreHorizontal,
   Avatar,
   PostModal,
@@ -39,7 +40,7 @@ const Post = (props: PostProps) => {
   const [isPostModalOpen, setPostModalOpen] = useState(false);
 
   // TODO change any type
-  const { user }: any = useAppSelector((store) => store.auth);
+  const { user, isUserLoggedIn }: any = useAppSelector((store) => store.auth);
   const { sortBy }: any = useAppSelector((store) => store.posts);
   const userEmail = user.email;
   const userBookmarks = user.bookmarks;
@@ -55,6 +56,11 @@ const Post = (props: PostProps) => {
 
   const handleLikeIconClick = async (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (!isUserLoggedIn) {
+      navigate("/login");
+      showToast("ERROR", "Please Login First");
+      return;
+    }
     if (!isLikedPost) {
       const { data, success, message } = await addPostLike(_id);
 
@@ -71,7 +77,6 @@ const Post = (props: PostProps) => {
       if (success) {
         const sortedPosts = getSortedPosts(data, sortBy);
         dispatch(postsActions.setPosts({ posts: sortedPosts }));
-        // dispatch(postsActions.setPosts({ posts: data }));
         showToast("SUCCESS", "Post UnLiked Successfully");
       } else {
         showToast("ERROR", message);
@@ -85,9 +90,13 @@ const Post = (props: PostProps) => {
 
   const handleBookmarkIconClick = async (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (!isUserLoggedIn) {
+      navigate("/login");
+      showToast("ERROR", "Please Login First");
+      return;
+    }
     if (!isPostBookMarked) {
       const { data, success, message } = await addToBookmark(_id);
-
       if (success) {
         dispatch(authActions.setBookmarks({ bookmarks: data }));
         showToast("SUCCESS", "Post Bookmarked Successfully");
@@ -96,7 +105,6 @@ const Post = (props: PostProps) => {
       }
     } else {
       const { data, success, message } = await removeFromBookmark(_id);
-
       if (success) {
         dispatch(authActions.setBookmarks({ bookmarks: data }));
         showToast("SUCCESS", "Post Removed From Bookmarked Successfully");
@@ -157,7 +165,7 @@ const Post = (props: PostProps) => {
           <p className="post-button-text font-medium">{comments.length}</p>
         </div>
         <div className="post-button-container">
-          <BsBookmark
+          <BsBookmarkFill
             className={`post-icons post-button ${
               isPostBookMarked ? "post-bookmarked" : "post-unbookmarked"
             }`}

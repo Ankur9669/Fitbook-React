@@ -15,8 +15,16 @@
     align-items: center;
     margin: 0.3rem 0;
 }
-.mobile-footer-active {
+.active {
     color: var(--primary-color);
+    background-color: transparent
+}
+.active:hover{
+    color: var(--primary-color);
+    background-color: transparent
+}
+.mobile-footer-inactive {
+    color: var(--color-black);
 }
 .footer-icon {
     font-size: 2rem;

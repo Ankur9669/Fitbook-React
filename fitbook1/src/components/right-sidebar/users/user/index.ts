@@ -10,6 +10,7 @@ import { followUser } from "../../../../util/api/followUser";
 import { unfollowUser } from "../../../../util/api/unfollowUser";
 import { authActions } from "../../../../app/features/auth/authSlice";
 import { showToast } from "../../../../util/toasts/showToast";
+import { useNavigate } from "react-router";
 
 export {
   Avatar,
@@ -22,4 +23,5 @@ export {
   unfollowUser,
   authActions,
   showToast,
+  useNavigate,
 };

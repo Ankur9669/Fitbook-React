@@ -23,7 +23,7 @@ const CenterContent = () => {
       {/* <Loader /> */}
       {pathName === "/" && <CreatePost setModalOpen={null} />}
       {pathName === "/bookmarks" && <Bookmark />}
-      {pathName === "/profile" && <Profile />}
+      {pathName.includes("/profile") && <Profile />}
       {pathName === "/messages" && <Messages />}
       {postId !== undefined && <SinglePost />}
       {postId === undefined &&

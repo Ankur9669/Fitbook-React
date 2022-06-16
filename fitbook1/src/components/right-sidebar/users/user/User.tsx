@@ -9,6 +9,7 @@ import {
   unfollowUser,
   authActions,
   showToast,
+  useNavigate,
 } from "./index";
 
 import { UserProps } from "./UserProps";
@@ -16,12 +17,18 @@ import "./user.css";
 
 const User = (props: UserProps) => {
   const { userName, userId, imageUrl = Avatar, _id, email } = props;
-  const { user }: any = useAppSelector((store) => store.auth);
+  const { user, isUserLoggedIn }: any = useAppSelector((store) => store.auth);
   const dispatch = useAppDispatch();
   const following = user.following;
   const isFollowedUser = findFollowing(following, _id);
+  const navigate = useNavigate();
 
   const handleFollowIconClick = async () => {
+    if (!isUserLoggedIn) {
+      navigate("/login");
+      showToast("ERROR", "Please Login First");
+      return;
+    }
     const { data, success, message } = await followUser(email);
     if (success) {
       dispatch(authActions.setUser({ user: data, userLoggedInStatus: true }));
@@ -32,6 +39,11 @@ const User = (props: UserProps) => {
   };
 
   const handleUnFollowIconClick = async () => {
+    if (!isUserLoggedIn) {
+      navigate("/login");
+      showToast("ERROR", "Please Login First");
+      return;
+    }
     const { data, success, message } = await unfollowUser(email);
     if (success) {
       dispatch(authActions.setUser({ user: data, userLoggedInStatus: true }));
@@ -40,9 +52,6 @@ const User = (props: UserProps) => {
       showToast("ERROR", message);
     }
   };
-
-  // TODO remove this
-  // console.log(userName, "", isFollowedUser);
 
   return (
     <div className="right-sidebar-user">
