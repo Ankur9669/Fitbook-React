@@ -17,11 +17,11 @@
 }
 .active {
     color: var(--primary-color);
-    background-color: var(--background-color-dark);
+    background-color: transparent
 }
 .active:hover{
     color: var(--primary-color);
-    background-color: var(--background-color-dark);
+    background-color: transparent
 }
 .mobile-footer-inactive {
     color: var(--color-black);
