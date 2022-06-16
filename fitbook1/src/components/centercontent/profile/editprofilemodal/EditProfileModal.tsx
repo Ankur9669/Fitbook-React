@@ -22,7 +22,7 @@ type FormDetailsType = {
 };
 
 const EditProfileModal = (props: EditProfileModalProps) => {
-  const { setEditProfileModalOpen } = props;
+  const { setEditProfileModalOpen, setUserDetails } = props;
   //TODO change any
   const { user }: any = useAppSelector((store) => store.auth);
   const firstName = user.firstName;
@@ -57,8 +57,15 @@ const EditProfileModal = (props: EditProfileModalProps) => {
     const { data, success, message } = await editUser(formDetails);
 
     if (success) {
-      console.log(data);
       dispatch(authActions.setUser({ user: data, isUserLoggedInStatus: true }));
+      setUserDetails({
+        userId: data.userId,
+        userName: `${data.firstName} ${data.lastName}`,
+        userBio: data.bio,
+        followers: data.followers,
+        following: data.following,
+      });
+
       showToast("SUCCESS", "Profile Updated Successfully");
       setEditProfileModalOpen(false);
     } else {

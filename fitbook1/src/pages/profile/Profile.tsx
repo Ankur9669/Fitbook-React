@@ -7,22 +7,30 @@ import {
   useAppSelector,
   getUserPosts,
   postsActions,
+  useParams,
+  useNavigate,
+  showToast,
 } from "./index";
 import "./profile.css";
 
 const Profile = () => {
   // TODO remove any
-  const { user }: any = useAppSelector((store) => store.auth);
   const dispatch = useAppDispatch();
-  const userEmail = user.email;
+  const { emailId: userEmail } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    (async () => {
-      const { data, success, message } = await getUserPosts(userEmail);
-      if (success) {
-        dispatch(postsActions.setPosts({ posts: data }));
-      }
-    })();
+    if (userEmail != undefined) {
+      (async () => {
+        const { data, success, message } = await getUserPosts(userEmail);
+        if (success) {
+          dispatch(postsActions.setPosts({ posts: data }));
+        }
+      })();
+    } else {
+      navigate("/404");
+      showToast("ERROR", "User Not Found");
+    }
   }, []);
 
   return (

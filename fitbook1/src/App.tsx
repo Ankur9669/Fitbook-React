@@ -34,7 +34,7 @@ function App() {
             </RequireAuth>
           }
         />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/:emailId" element={<Profile />} />
         <Route path="/messages" element={<Messages />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />

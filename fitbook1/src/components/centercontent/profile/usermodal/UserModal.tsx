@@ -1,20 +1,47 @@
-import React, { useEffect } from "react";
-import User from "./user/User";
-import { AiOutlineClose } from "../../../../assets/icons/icons";
-import { useAppSelector } from "../../../../app/hooks";
-import { UserModalProps } from "./UserModalProps";
+import {
+  React,
+  useEffect,
+  useState,
+  User,
+  AiOutlineClose,
+  useParams,
+  getSingleUser,
+} from "./index";
+
 import "./usermodal.css";
+import { UserModalProps } from "./UserModalProps";
 
 const UserModal = (props: UserModalProps) => {
   const { setModalOpen, userModalHeading } = props;
   // TODO change any
-  const { user }: any = useAppSelector((store) => store.auth);
-  const userFollowers: any[] = user.followers;
-  const userFollowing: any[] = user.following;
+  const [userDetails, setUserDetails] = useState<any>({
+    userId: "",
+    userName: "",
+    userBio: "",
+    followers: [],
+    following: [],
+  });
+  const { emailId: userEmail } = useParams();
 
   useEffect(() => {
     // Functionality to disable the scroll of background
     document.body.style.overflow = "hidden";
+
+    if (userEmail != undefined) {
+      (async () => {
+        const { data, success, message } = await getSingleUser(userEmail);
+        if (success) {
+          console.log(data);
+          setUserDetails({
+            userId: data.userId,
+            userName: `${data.firstName} ${data.lastName}`,
+            userBio: data.bio,
+            followers: data.followers,
+            following: data.following,
+          });
+        }
+      })();
+    }
 
     return () => {
       document.body.style.overflow = "auto";
@@ -37,7 +64,7 @@ const UserModal = (props: UserModalProps) => {
         <h1 className="user-modal-heading font-large">{userModalHeading}</h1>
         <div className="users-container">
           {userModalHeading === "Followers"
-            ? userFollowers.map((user) => (
+            ? userDetails.followers.map((user: any) => (
                 <div key={user._id}>
                   <User
                     userName={`${user.firstName} ${user.lastName}`}
@@ -45,7 +72,7 @@ const UserModal = (props: UserModalProps) => {
                   />
                 </div>
               ))
-            : userFollowing.map((user) => (
+            : userDetails.following.map((user: any) => (
                 <div key={user._id}>
                   <User
                     userName={`${user.firstName} ${user.lastName}`}
