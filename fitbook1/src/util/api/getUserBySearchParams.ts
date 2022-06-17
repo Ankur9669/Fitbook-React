@@ -1,11 +1,12 @@
 import Axios from "axios";
 
-const getSingleUser = async (userEmail: string) => {
+const getUsersBySearchParams = async (searchParams: string) => {
   try {
     // TODO change any type
-    const response: any = await Axios.get(`/api/users/singleuser/${userEmail}`);
+    const response: any = await Axios.get(`/api/users/${searchParams}`);
+
     return {
-      data: response.data.user,
+      data: response.data.users,
       success: true,
       message: "Users fetched successfully",
     };
@@ -19,4 +20,4 @@ const getSingleUser = async (userEmail: string) => {
   }
 };
 
-export { getSingleUser };
+export { getUsersBySearchParams };

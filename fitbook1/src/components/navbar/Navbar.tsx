@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Fitbook,
   PrimaryButton,
@@ -8,13 +8,21 @@ import {
   useAppDispatch,
   authActions,
   showToast,
+  User,
+  Avatar,
+  getUsersBySearchParams,
 } from "./index";
 import "./navbar.css";
+import { UserType } from "./UserType";
+import { debounce } from "../../util/debounce";
 
 const Navbar = () => {
   const { isUserLoggedIn } = useAppSelector((store) => store.auth);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const [searchText, setSearchText] = useState<string>("");
+  const [isUserContainerOpen, setUserContainerOpen] = useState<boolean>(false);
+  const [searchUsers, setSearchUsers] = useState<UserType[]>([]);
 
   const handleLogoutClick = () => {
     dispatch(authActions.logoutUser());
@@ -22,6 +30,22 @@ const Navbar = () => {
     showToast("SUCCESS", "User Logged out");
   };
 
+  const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchText(e.target.value);
+    if (e.target.value.length > 0) {
+      setUserContainerOpen(true);
+      // TODO implement debounce
+
+      const { data, success, message } = await getUsersBySearchParams(
+        e.target.value
+      );
+      if (success) {
+        setSearchUsers(data);
+      }
+    } else {
+      setUserContainerOpen(false);
+    }
+  };
   return (
     <div className="navbar">
       <div className="navbar-app-container">
@@ -38,7 +62,25 @@ const Navbar = () => {
             type="search"
             placeholder="Enter search text..."
             className="nav-search"
+            value={searchText}
+            onChange={handleInputChange}
           />
+          <div
+            className={`${
+              isUserContainerOpen ? "users-container" : "users-container-hide"
+            }`}
+          >
+            {searchUsers?.map((user: any) => (
+              <User
+                key={user._id}
+                userId={user.userId}
+                userName={`${user.firstName} ${user.lastName}`}
+                imageUrl={Avatar}
+                email={user.email}
+                _id={user._id}
+              />
+            ))}
+          </div>
         </div>
         <div className="icons-container">
           {isUserLoggedIn ? (
@@ -55,6 +97,8 @@ const Navbar = () => {
           type="search"
           placeholder="Enter search text..."
           className="nav-search"
+          value={searchText}
+          onChange={handleInputChange}
         />
       </div>
     </div>

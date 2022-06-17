@@ -18,6 +18,7 @@ function SignupForm() {
   const [formDetails, setFormDetails] = useState({
     firstName: "",
     lastName: "",
+    userId: "",
     email: "",
     password: "",
   });
@@ -35,6 +36,7 @@ function SignupForm() {
     const { data, success, message } = await signUpUser(
       formDetails.firstName,
       formDetails.lastName,
+      formDetails.userId,
       formDetails.email,
       formDetails.password
     );
@@ -84,6 +86,18 @@ function SignupForm() {
             value={formDetails.lastName}
             onChange={(e) =>
               setFormDetails({ ...formDetails, lastName: e.target.value })
+            }
+            required
+          />
+        </div>
+
+        <div className="form-input-box">
+          <input
+            type="text"
+            placeholder="User Id"
+            value={formDetails.userId}
+            onChange={(e) =>
+              setFormDetails({ ...formDetails, userId: e.target.value })
             }
             required
           />

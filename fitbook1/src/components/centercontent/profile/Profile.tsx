@@ -50,7 +50,6 @@ const Profile = () => {
     if (userEmail != undefined && userEmail !== user.email) {
       (async () => {
         const { data, success, message } = await getSingleUser(userEmail);
-
         if (success) {
           setUserDetails({
             userId: data.userId,

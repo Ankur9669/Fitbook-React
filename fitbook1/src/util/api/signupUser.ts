@@ -3,6 +3,7 @@ import Axios from "axios";
 const signUpUser = async (
   firstName: string,
   lastName: string,
+  userId: string,
   email: string,
   password: string
 ) => {
@@ -11,6 +12,7 @@ const signUpUser = async (
     const response: any = await Axios.post("/api/auth/signup", {
       email: email,
       password: password,
+      userId: userId,
       firstName: firstName,
       lastName: lastName,
     });

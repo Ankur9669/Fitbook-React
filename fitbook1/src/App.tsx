@@ -18,7 +18,7 @@ function App() {
   useDocumentTitle("FitBook-Home");
   return (
     <div className="App">
-      <ToastContainer />
+      <ToastContainer theme="colored" />
       <Navbar />
 
       <Routes>

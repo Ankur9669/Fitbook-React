@@ -32,6 +32,7 @@ import {
   removePostFromBookmarkHandler,
   unfollowUserHandler,
   editUserHandler,
+  getUserBySearchHandler,
 } from "./backend/controllers/UserController";
 
 export function makeServer({ environment = "development" } = {}) {
@@ -102,7 +103,8 @@ export function makeServer({ environment = "development" } = {}) {
 
       // user routes (public)
       this.get("/users", getAllUsersHandler.bind(this));
-      this.get("/users/:userEmail", getUserHandler.bind(this));
+      this.get("/users/singleuser/:userEmail", getUserHandler.bind(this));
+      this.get("/users/:searchString", getUserBySearchHandler.bind(this));
 
       // user routes (private)
       this.post("users/edit", editUserHandler.bind(this));

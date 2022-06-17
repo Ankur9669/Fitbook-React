@@ -5,6 +5,9 @@ import { useAppSelector } from "../../app/hooks";
 import { useAppDispatch } from "../../app/hooks";
 import { authActions } from "../../app/features/auth/authSlice";
 import { showToast } from "../../util/toasts/showToast";
+import User from "./user/User";
+import Avatar from "../../assets/images/avatar.svg";
+import { getUsersBySearchParams } from "../../util/api/getUserBySearchParams";
 
 export {
   Fitbook,
@@ -15,4 +18,7 @@ export {
   useAppDispatch,
   authActions,
   showToast,
+  User,
+  Avatar,
+  getUsersBySearchParams,
 };
