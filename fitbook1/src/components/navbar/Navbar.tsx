@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Fitbook,
   PrimaryButton,
@@ -35,6 +35,7 @@ const Navbar = () => {
     if (e.target.value.length > 0) {
       setUserContainerOpen(true);
       // TODO implement debounce
+
       const { data, success, message } = await getUsersBySearchParams(
         e.target.value
       );
