@@ -14,6 +14,7 @@ import {
 } from "./index";
 import "./navbar.css";
 import { UserType } from "./UserType";
+import { debounce } from "../../util/debounce";
 
 const Navbar = () => {
   const { isUserLoggedIn } = useAppSelector((store) => store.auth);
@@ -28,12 +29,12 @@ const Navbar = () => {
     localStorage.removeItem("token");
     showToast("SUCCESS", "User Logged out");
   };
+
   const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
     if (e.target.value.length > 0) {
       setUserContainerOpen(true);
       // TODO implement debounce
-
       const { data, success, message } = await getUsersBySearchParams(
         e.target.value
       );
@@ -44,7 +45,6 @@ const Navbar = () => {
       setUserContainerOpen(false);
     }
   };
-
   return (
     <div className="navbar">
       <div className="navbar-app-container">
