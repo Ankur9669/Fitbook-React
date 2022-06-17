@@ -71,6 +71,9 @@
     background-color: var(--background-color-dark);
     z-index: var(--z-index-highest);
 }
+.users-container-hide {
+    display: none;
+}
 /* searchbar container css */
 
 

@@ -8,12 +8,12 @@ import {
   useAppDispatch,
   authActions,
   showToast,
+  User,
+  Avatar,
+  getUsersBySearchParams,
 } from "./index";
 import "./navbar.css";
-import User from "./user/User";
-import Avatar from "../../assets/images/avatar.svg";
 import { UserType } from "./UserType";
-import { getUsersBySearchParams } from "../../util/api/getUserBySearchParams";
 
 const Navbar = () => {
   const { isUserLoggedIn } = useAppSelector((store) => store.auth);
@@ -30,13 +30,18 @@ const Navbar = () => {
   };
   const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
-    // TODO implement debounce
+    if (e.target.value.length > 0) {
+      setUserContainerOpen(true);
+      // TODO implement debounce
 
-    const { data, success, message } = await getUsersBySearchParams(
-      e.target.value
-    );
-    if (success) {
-      setSearchUsers(data);
+      const { data, success, message } = await getUsersBySearchParams(
+        e.target.value
+      );
+      if (success) {
+        setSearchUsers(data);
+      }
+    } else {
+      setUserContainerOpen(false);
     }
   };
 
@@ -59,7 +64,11 @@ const Navbar = () => {
             value={searchText}
             onChange={handleInputChange}
           />
-          <div className="users-container">
+          <div
+            className={`${
+              isUserContainerOpen ? "users-container" : "users-container-hide"
+            }`}
+          >
             {searchUsers?.map((user: any) => (
               <User
                 key={user._id}
