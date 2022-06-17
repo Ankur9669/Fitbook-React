@@ -36,6 +36,33 @@ export const getUserHandler = function (schema, request) {
 };
 
 /**
+ * This handler handles get a user from userId in the db.
+ * send GET Request at /api/users/:searchString
+ * */
+export const getUserBySearchHandler = function (schema, request) {
+  const searchString = request.params.searchString;
+  try {
+    const users = this.db.users;
+    const filteredUsers = users.filter(
+      (user) =>
+        user.firstName.toLowerCase().includes(searchString.toLowerCase()) ||
+        user.lastName.toLowerCase().includes(searchString.toLowerCase()) ||
+        user.userId.toLowerCase().includes(searchString.toLowerCase())
+    );
+    return new Response(200, {}, { users: filteredUsers });
+  } catch (error) {
+    return new Response(
+      500,
+      {},
+      {
+        error,
+      }
+    );
+  }
+};
+/** */
+
+/**
  * This handler handles updating user details.
  * send POST Request at /api/users/edit
  * body contains { userData }
