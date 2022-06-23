@@ -60,7 +60,7 @@ const Navbar = () => {
         <div className="searchbar-container">
           <input
             type="search"
-            placeholder="Enter search text..."
+            placeholder="Search Users..."
             className="nav-search"
             value={searchText}
             onChange={handleInputChange}
@@ -95,7 +95,7 @@ const Navbar = () => {
       <div className="mobile-searchbar-container">
         <input
           type="search"
-          placeholder="Enter search text..."
+          placeholder="Search Users..."
           className="nav-search"
           value={searchText}
           onChange={handleInputChange}

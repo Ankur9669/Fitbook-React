@@ -50,10 +50,10 @@ const LeftSidebar = (props: LeftSidebarProps) => {
             <h1 className="sidebar-icon-text">Profile</h1>
           </NavLink>
 
-          <NavLink to="/messages" className={`sidebar-icon ${findActive}`}>
+          {/* <NavLink to="/messages" className={`sidebar-icon ${findActive}`}>
             <RiMessage2Fill className="sidebar-icon-icon" />
             <h1 className="sidebar-icon-text">Messages</h1>
-          </NavLink>
+          </NavLink> */}
         </div>
         <div className="left-sidebar-footer">
           <PrimaryButton

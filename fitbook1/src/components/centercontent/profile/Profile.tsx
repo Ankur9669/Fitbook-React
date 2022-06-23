@@ -25,12 +25,14 @@ const Profile = () => {
     userId: "",
     userName: "",
     userBio: "",
+    userWebsite: "",
     followers: [],
     following: [],
   });
   const userId = user?.userId == undefined ? "unknown" : user.userId;
   const userName = `${user.firstName} ${user.lastName}`;
   const userBio = user.bio;
+  const userWebsite = user.website;
   const followers = user.followers;
   const following = user.following;
 
@@ -55,6 +57,7 @@ const Profile = () => {
             userId: data.userId,
             userName: `${data.firstName} ${data.lastName}`,
             userBio: data.bio,
+            userWebsite: data.website,
             followers: data.followers,
             following: data.following,
           });
@@ -88,7 +91,14 @@ const Profile = () => {
         <p className="profile-user-bio font-medium">
           {user.email === userEmail ? userBio : userDetails.userBio}
         </p>
-        <PrimaryButton buttonText="Visit Website" />
+        <a
+          href={
+            user.email === userEmail ? userWebsite : userDetails.userWebsite
+          }
+          target="blank"
+        >
+          <PrimaryButton buttonText="Visit Website" />
+        </a>
       </div>
       <div className="user-info">
         <p
