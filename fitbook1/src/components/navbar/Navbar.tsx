@@ -27,6 +27,7 @@ const Navbar = () => {
   const handleLogoutClick = () => {
     dispatch(authActions.logoutUser());
     localStorage.removeItem("token");
+    navigate("/");
     showToast("SUCCESS", "User Logged out");
   };
 
@@ -46,6 +47,7 @@ const Navbar = () => {
       setUserContainerOpen(false);
     }
   };
+
   return (
     <div className="navbar">
       <div className="navbar-app-container">
