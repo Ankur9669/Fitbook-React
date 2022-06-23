@@ -22,8 +22,22 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/explore" element={<Explore />} />
+        <Route
+          path="/"
+          element={
+            <RequireAuth>
+              <Homepage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/explore"
+          element={
+            <RequireAuth>
+              <Explore />
+            </RequireAuth>
+          }
+        />
         <Route
           path="/bookmarks"
           element={
@@ -33,7 +47,7 @@ function App() {
           }
         />
         <Route path="/profile/:emailId" element={<Profile />} />
-        <Route path="/messages" element={<Messages />} />
+        {/* <Route path="/messages" element={<Messages />} /> */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/post/:postId" element={<SinglePost />} />

@@ -27,10 +27,10 @@ const MobileFooter = () => {
         <MdExplore className="footer-icon" />
         <p className="font-medium">Explore</p>
       </NavLink>
-      <NavLink to="/messages" className={`mobile-footer-item ${findActive}`}>
+      {/* <NavLink to="/messages" className={`mobile-footer-item ${findActive}`}>
         <RiMessage2Fill className="footer-icon" />
         <p className="font-medium">Messages</p>
-      </NavLink>
+      </NavLink> */}
       <NavLink to="/bookmarks" className={`mobile-footer-item ${findActive}`}>
         <BsFillBookmarkFill className="footer-icon" />
         <p className="font-medium">Bookmarks</p>

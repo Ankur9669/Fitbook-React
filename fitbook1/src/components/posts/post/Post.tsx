@@ -116,11 +116,15 @@ const Post = (props: PostProps) => {
   const handlePostClick = () => {
     navigate(`/post/${_id}`);
   };
+  const handleUserClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    navigate(`/profile/${postEmail}`);
+  };
 
   return (
     <div className="post" onClick={handlePostClick}>
       <div className="post-avatar-content-container">
-        <div className="post-avatar-container">
+        <div className="post-avatar-container" onClick={handleUserClick}>
           <img
             src={Avatar}
             alt="user-avatar"
@@ -129,7 +133,9 @@ const Post = (props: PostProps) => {
         </div>
 
         <div className="post-content-container">
-          <h3 className="post-header">{username}</h3>
+          <h3 className="post-header" onClick={handleUserClick}>
+            {username}
+          </h3>
           <p className="post-content">{postContent}</p>
           {postEmail === userEmail && (
             <FiMoreHorizontal
