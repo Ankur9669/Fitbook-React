@@ -4,6 +4,7 @@
     font-size: 1.3rem;
 }
 .button {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -31,4 +32,13 @@
 }
 .button-outline-secondary:hover{
     background-color: var(--primary-color);
+}
+.button-loader {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate3d(-50%, -50%, 0);
+}
+.button-loading {
+    color: transparent;
 }

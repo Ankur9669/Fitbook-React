@@ -1,4 +1,5 @@
 import "./button.css";
+import { ThreeDots } from "react-loader-spinner";
 
 type PrimaryButtonProps = {
   buttonText?: string;
@@ -7,6 +8,7 @@ type PrimaryButtonProps = {
   iconRight?: any;
   className?: string;
   isDisabled?: boolean;
+  isLoading?: boolean;
 };
 
 // Here onClick prop is a function which defines what to do on a button click
@@ -18,6 +20,7 @@ const PrimaryButton = ({
   iconRight = "",
   className = "",
   isDisabled = false,
+  isLoading = false,
 }: PrimaryButtonProps) => {
   return (
     <button
@@ -27,14 +30,30 @@ const PrimaryButton = ({
       onClick={onClick}
       disabled={isDisabled}
     >
+      {isLoading && (
+        <div className="button-loader">
+          <ThreeDots
+            color={"var(--color-white)"}
+            width={"50px"}
+            height={"20px"}
+          />
+        </div>
+      )}
       {iconLeft !== "" ? (
-        <span className="button-icon">{iconLeft()}</span>
+        <span className={`button-icon ${isLoading && "button-loading"}`}>
+          {iconLeft()}
+        </span>
       ) : (
         <></>
       )}
-
-      {buttonText}
-      {iconRight !== "" ? iconRight() : <></>}
+      <span className={`${isLoading && "button-loading"}`}>{buttonText}</span>
+      {iconRight !== "" ? (
+        <span className={`button-icon ${isLoading && "button-loading"}`}>
+          {iconRight()}
+        </span>
+      ) : (
+        <></>
+      )}
     </button>
   );
 };
