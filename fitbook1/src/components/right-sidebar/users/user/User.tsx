@@ -14,6 +14,7 @@ import {
 
 import { UserProps } from "./UserProps";
 import "./user.css";
+import { useState } from "react";
 
 const User = (props: UserProps) => {
   const { userName, userId, imageUrl = Avatar, _id, email } = props;
@@ -21,35 +22,33 @@ const User = (props: UserProps) => {
   const dispatch = useAppDispatch();
   const following = user.following;
   const isFollowedUser = findFollowing(following, _id);
-  const navigate = useNavigate();
+  const [isIconLoading, setIconLoading] = useState<boolean>(false);
 
   const handleFollowIconClick = async () => {
-    if (!isUserLoggedIn) {
-      navigate("/login");
-      showToast("ERROR", "Please Login First");
-      return;
-    }
-    const { data, success, message } = await followUser(email);
-    if (success) {
-      dispatch(authActions.setUser({ user: data, userLoggedInStatus: true }));
-      showToast("SUCCESS", "Followed User");
-    } else {
-      showToast("ERROR", message);
+    if (!isIconLoading) {
+      setIconLoading(true);
+      const { data, success, message } = await followUser(email);
+      if (success) {
+        dispatch(authActions.setUser({ user: data, userLoggedInStatus: true }));
+        showToast("SUCCESS", "Followed User");
+      } else {
+        showToast("ERROR", message);
+      }
+      setIconLoading(false);
     }
   };
 
   const handleUnFollowIconClick = async () => {
-    if (!isUserLoggedIn) {
-      navigate("/login");
-      showToast("ERROR", "Please Login First");
-      return;
-    }
-    const { data, success, message } = await unfollowUser(email);
-    if (success) {
-      dispatch(authActions.setUser({ user: data, userLoggedInStatus: true }));
-      showToast("SUCCESS", "Unfollowed User");
-    } else {
-      showToast("ERROR", message);
+    if (!isIconLoading) {
+      setIconLoading(true);
+      const { data, success, message } = await unfollowUser(email);
+      if (success) {
+        dispatch(authActions.setUser({ user: data, userLoggedInStatus: true }));
+        showToast("SUCCESS", "Unfollowed User");
+      } else {
+        showToast("ERROR", message);
+      }
+      setIconLoading(false);
     }
   };
 

@@ -17,10 +17,11 @@ import { CreatePostProps } from "./CreatePostProps";
 
 const CreatePost = (props: CreatePostProps) => {
   const wordsLimit = 250;
-  const [remainingWords, setRemainingWords] = useState(wordsLimit);
-  const [isPostDisable, setPostDisabled] = useState(true);
-  const [isEmojiPickerOpen, setEmojiPickerOpen] = useState(false);
-  const [postText, setPostText] = useState("");
+  const [remainingWords, setRemainingWords] = useState<number>(wordsLimit);
+  const [isPostDisable, setPostDisabled] = useState<boolean>(true);
+  const [isEmojiPickerOpen, setEmojiPickerOpen] = useState<boolean>(false);
+  const [postText, setPostText] = useState<string>("");
+  const [isPostButtonLoading, setPostButttonLoading] = useState<boolean>(false);
   const { setModalOpen } = props;
 
   // TODO change any type
@@ -51,24 +52,28 @@ const CreatePost = (props: CreatePostProps) => {
   const handleCreatePostClick = async (
     e: React.MouseEvent<HTMLButtonElement>
   ) => {
-    const { data, success, message } = await createPost(
-      postText,
-      userEmail,
-      userName
-    );
+    if (!isPostButtonLoading) {
+      setPostButttonLoading(true);
+      const { data, success, message } = await createPost(
+        postText,
+        userEmail,
+        userName
+      );
+      if (success) {
+        showToast("SUCCESS", "Post Created Successfully");
+        const sortedPosts = getSortedPosts(data, sortBy);
+        dispatch(postsActions.setPosts({ posts: sortedPosts }));
+        setPostText("");
+        setRemainingWords(wordsLimit);
+        setPostDisabled(true);
 
-    if (success) {
-      showToast("SUCCESS", "Post Created Successfully");
-      const sortedPosts = getSortedPosts(data, sortBy);
-      dispatch(postsActions.setPosts({ posts: sortedPosts }));
-      setPostText("");
-      setRemainingWords(wordsLimit);
-
-      if (setModalOpen !== null) {
-        setModalOpen(false);
+        if (setModalOpen !== null) {
+          setModalOpen(false);
+        }
+      } else {
+        showToast("ERROR", message);
       }
-    } else {
-      showToast("ERROR", message);
+      setPostButttonLoading(false);
     }
   };
 
@@ -114,6 +119,7 @@ const CreatePost = (props: CreatePostProps) => {
             buttonText="post"
             isDisabled={isPostDisable}
             onClick={handleCreatePostClick}
+            isLoading={isPostButtonLoading}
           />
         </div>
       </div>

@@ -18,9 +18,11 @@ import "./editpostmodal.css";
 const EditPostModal = (props: EditPostModalProps) => {
   const { setEditPostModalOpen, postContent, postId } = props;
   const wordsLimit = 250;
-  const [remainingWords, setRemainingWords] = useState(wordsLimit);
-  const [isPostDisable, setPostDisabled] = useState(true);
-  const [isEmojiPickerOpen, setEmojiPickerOpen] = useState(false);
+  const [remainingWords, setRemainingWords] = useState<number>(wordsLimit);
+  const [isPostDisable, setPostDisabled] = useState<boolean>(true);
+  const [isEmojiPickerOpen, setEmojiPickerOpen] = useState<boolean>(false);
+  const [isEditPostButtonLoading, setEditPostButtonLoading] =
+    useState<boolean>(false);
   const [postText, setPostText] = useState(postContent);
   const dispatch = useAppDispatch();
 
@@ -53,20 +55,24 @@ const EditPostModal = (props: EditPostModalProps) => {
     e: React.MouseEvent<HTMLButtonElement>
   ) => {
     e.stopPropagation();
-    const { data, success, message } = await editPost(
-      postId,
-      postText,
-      userEmail,
-      userName
-    );
+    if (!isEditPostButtonLoading) {
+      setEditPostButtonLoading(true);
+      const { data, success, message } = await editPost(
+        postId,
+        postText,
+        userEmail,
+        userName
+      );
 
-    if (success) {
-      dispatch(postsActions.setPosts({ posts: data }));
-      showToast("SUCCESS", "Post edited Successfully");
-      setEditPostModalOpen(false);
-      setRemainingWords(wordsLimit);
-    } else {
-      showToast("ERROR", message);
+      if (success) {
+        dispatch(postsActions.setPosts({ posts: data }));
+        showToast("SUCCESS", "Post edited Successfully");
+        setEditPostModalOpen(false);
+        setRemainingWords(wordsLimit);
+      } else {
+        showToast("ERROR", message);
+      }
+      setEditPostButtonLoading(false);
     }
   };
 
@@ -125,6 +131,7 @@ const EditPostModal = (props: EditPostModalProps) => {
               buttonText="edit"
               isDisabled={isPostDisable}
               onClick={handleEditPostClick}
+              isLoading={isEditPostButtonLoading}
             />
           </div>
         </div>
