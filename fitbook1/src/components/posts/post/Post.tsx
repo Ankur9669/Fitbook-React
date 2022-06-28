@@ -7,6 +7,7 @@ import {
   BsBookmark,
   BsBookmarkFill,
   FiMoreHorizontal,
+  FaCommentAlt,
   Avatar,
   PostModal,
   useNavigate,
@@ -164,7 +165,8 @@ const Post = (props: PostProps) => {
           <p className="post-button-text font-medium">{likes.likeCount}</p>
         </div>
         <div className="post-button-container">
-          <BiCommentDetail
+          <FaCommentAlt
+            style={{ fontSize: "1.6rem" }}
             className="post-icons post-button"
             onClick={handleCommentIconClick}
           />
@@ -172,6 +174,7 @@ const Post = (props: PostProps) => {
         </div>
         <div className="post-button-container">
           <BsBookmarkFill
+            style={{ fontSize: "1.8rem" }}
             className={`post-icons post-button ${
               isPostBookMarked ? "post-bookmarked" : "post-unbookmarked"
             }`}

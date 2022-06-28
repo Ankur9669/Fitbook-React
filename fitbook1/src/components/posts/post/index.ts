@@ -6,6 +6,7 @@ import {
   BsBookmark,
   FiMoreHorizontal,
   BsBookmarkFill,
+  FaCommentAlt,
 } from "../../../assets/icons/icons";
 
 import PostModal from "./postmodal/PostModal";
@@ -30,6 +31,7 @@ export {
   BsBookmark,
   BsBookmarkFill,
   FiMoreHorizontal,
+  FaCommentAlt,
   PostModal,
   useNavigate,
   useAppSelector,

@@ -108,20 +108,6 @@ function Loginform() {
             />
           )}
         </div>
-        <div className="checkbox-container">
-          <span>
-            <input type="checkbox" value="Remember Box" id="remember-box" />
-            <label
-              htmlFor="remember-box"
-              className="font-medium remember-me-checkbox"
-            >
-              Remember Me
-            </label>
-          </span>
-          <Link to="/" className="forgot-password-btn font-medium">
-            Forgot Password
-          </Link>
-        </div>
 
         <PrimaryButton
           buttonText="Login As Guest"

@@ -5,10 +5,9 @@ import {
   CgProfile,
   BsFillBookmarkFill,
   MdExplore,
-  RiMessage2Fill,
   NavLink,
+  useAppSelector,
 } from "./index";
-import { useAppSelector } from "../../app/hooks";
 import { LeftSidebarProps } from "./LeftSidebarProps";
 import "./left-sidebar.css";
 

@@ -15,6 +15,7 @@ import {
 import "./navbar.css";
 import { UserType } from "./UserType";
 import { debounce } from "../../util/debounce";
+import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const { isUserLoggedIn } = useAppSelector((store) => store.auth);
@@ -23,6 +24,8 @@ const Navbar = () => {
   const [searchText, setSearchText] = useState<string>("");
   const [isUserContainerOpen, setUserContainerOpen] = useState<boolean>(false);
   const [searchUsers, setSearchUsers] = useState<UserType[]>([]);
+  const location = useLocation();
+  const pathname = location.pathname;
 
   const handleLogoutClick = () => {
     dispatch(authActions.logoutUser());
@@ -59,31 +62,34 @@ const Navbar = () => {
             <span className="logo-sub-text">O</span>K
           </h1>
         </div>
-        <div className="searchbar-container">
-          <input
-            type="search"
-            placeholder="Search Users..."
-            className="nav-search"
-            value={searchText}
-            onChange={handleInputChange}
-          />
-          <div
-            className={`${
-              isUserContainerOpen ? "users-container" : "users-container-hide"
-            }`}
-          >
-            {searchUsers?.map((user: any) => (
-              <User
-                key={user._id}
-                userId={user.userId}
-                userName={`${user.firstName} ${user.lastName}`}
-                imageUrl={Avatar}
-                email={user.email}
-                _id={user._id}
-              />
-            ))}
+        {pathname !== "/login" && pathname !== "/signup" && (
+          <div className="searchbar-container">
+            <input
+              type="search"
+              placeholder="Search Users..."
+              className="nav-search"
+              value={searchText}
+              onChange={handleInputChange}
+            />
+            <div
+              className={`${
+                isUserContainerOpen ? "users-container" : "users-container-hide"
+              }`}
+            >
+              {searchUsers?.map((user: any) => (
+                <User
+                  key={user._id}
+                  userId={user.userId}
+                  userName={`${user.firstName} ${user.lastName}`}
+                  imageUrl={Avatar}
+                  email={user.email}
+                  _id={user._id}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
+
         <div className="icons-container">
           {isUserLoggedIn ? (
             <PrimaryButton buttonText="Logout" onClick={handleLogoutClick} />
