@@ -8,6 +8,12 @@
     border: 1px solid var(--primary-color);
     border-radius: 5px;
 }
+.single-post-loader {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .single-post-liked {
     color: var(--primary-color);
 }

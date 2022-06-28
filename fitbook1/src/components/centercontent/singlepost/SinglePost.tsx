@@ -26,10 +26,16 @@ import {
   addPostLike,
   removePostLike,
 } from "./index";
+import { ThreeDots } from "react-loader-spinner";
 import { CommentType } from "../../../util/types/CommentType";
 
 const Singlepost = () => {
   const wordsCount = 250;
+  const [replyButtonState, setReplyButtonState] = useState<any>({
+    isReplyButtonDisabled: true,
+    isReplyButtonLoading: false,
+  });
+  const [isPostLoading, setPostLoading] = useState<boolean>(true);
   const [replyText, setReplyText] = useState<string>("");
   const [remainingWords, setRemainingWords] = useState<number>(wordsCount);
   // TODO change any type
@@ -52,25 +58,45 @@ const Singlepost = () => {
   const onReplyTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setReplyText(e.target.value);
     setRemainingWords(wordsCount - e.target.value.length);
+    if (
+      wordsCount - e.target.value.length < 0 ||
+      e.target.value.length === wordsCount
+    ) {
+      setReplyButtonState({ ...replyButtonState, isReplyButtonDisabled: true });
+    } else {
+      setReplyButtonState({
+        ...replyButtonState,
+        isReplyButtonDisabled: false,
+      });
+    }
   };
   const handleBackButtonClick = () => {
     navigate(-1);
   };
   const handleReplyClick = async () => {
-    if (postId !== undefined) {
-      const { data, success, message } = await addComment(
-        postId,
-        replyText,
-        userName
-      );
+    if (!replyButtonState.isReplyButtonLoading) {
+      setReplyButtonState({ ...replyButtonState, isReplyButtonLoading: true });
+      if (postId !== undefined) {
+        const { data, success, message } = await addComment(
+          postId,
+          replyText,
+          userName
+        );
 
-      if (success) {
-        setPostComments(data);
-        showToast("SUCCESS", "Comment Added Successflly");
-        setRemainingWords(wordsCount);
-      } else {
-        showToast("ERROR", message);
+        if (success) {
+          setPostComments(data);
+          showToast("SUCCESS", "Comment Added Successflly");
+          setRemainingWords(wordsCount);
+          setReplyText("");
+        } else {
+          showToast("ERROR", message);
+        }
       }
+      setReplyButtonState({
+        ...replyButtonState,
+        isReplyButtonLoading: false,
+        isReplyButtonDisabled: true,
+      });
     }
   };
   const handleBookmarkIconClick = async (e: React.MouseEvent) => {
@@ -132,6 +158,7 @@ const Singlepost = () => {
 
   useEffect(() => {
     (async () => {
+      setPostLoading(true);
       if (postId != undefined) {
         const { data, success, message } = await getSinglePost(postId);
         if (success) {
@@ -143,6 +170,7 @@ const Singlepost = () => {
           showToast("ERROR", message);
         }
       }
+      setPostLoading(false);
     })();
   }, []);
 
@@ -154,79 +182,97 @@ const Singlepost = () => {
         onClick={handleBackButtonClick}
       />
 
-      <div className="single-post">
-        <div className="single-post-avatar-content-container">
-          <div className="single-post-avatar-container">
-            <img
-              src={Avatar}
-              alt="user-avatar"
-              className="img-responsive img-round"
-            />
+      {isPostLoading && (
+        <div className="single-post-loader">
+          <ThreeDots
+            color="var(--primary-color)"
+            width={"4rem"}
+            height={"4rem"}
+          />
+        </div>
+      )}
+      {!isPostLoading && (
+        <div className="single-post">
+          <div className="single-post-avatar-content-container">
+            <div className="single-post-avatar-container">
+              <img
+                src={Avatar}
+                alt="user-avatar"
+                className="img-responsive img-round"
+              />
+            </div>
+
+            <div className="single-post-content-container">
+              <h3 className="single-post-header">{post?.username}</h3>
+              <p className="single-post-content">{post?.postContent}</p>
+              <p className="single-post-timeline font-extra-small">
+                a month ago
+              </p>
+            </div>
+          </div>
+          <div className="single-post-buttons-container">
+            <div className="single-post-button-container">
+              <AiFillHeart
+                className={`single-post-icons single-post-button ${
+                  isLikedPost ? "single-post-liked" : "single-post-unliked"
+                }`}
+                onClick={handleLikeIconClick}
+              />
+              <p className="single-post-button-text font-medium">{likeCount}</p>
+            </div>
+            <div className="single-post-button-container">
+              <BiCommentDetail className="single-post-icons single-post-button" />
+              <p className="single-post-button-text font-medium">
+                {commentCount}
+              </p>
+            </div>
+            <div className="single-post-button-container">
+              <BsBookmarkFill
+                className={`single-post-icons single-post-button ${
+                  isPostBookMarked
+                    ? "single-post-bookmarked"
+                    : "single-post-unbookmarked"
+                }`}
+                onClick={handleBookmarkIconClick}
+              />
+            </div>
           </div>
 
-          <div className="single-post-content-container">
-            <h3 className="single-post-header">{post?.username}</h3>
-            <p className="single-post-content">{post?.postContent}</p>
-            <p className="single-post-timeline font-extra-small">a month ago</p>
+          <div className="single-post-reply-box-container">
+            <div className="single-post-avatar-reply-box-container">
+              <FaUserCircle className="single-post-avatar" />
+              <input
+                placeholder="Enter your reply"
+                className="single-post-reply font-medium"
+                value={replyText}
+                onChange={onReplyTextChange}
+              />
+            </div>
           </div>
-        </div>
-        <div className="single-post-buttons-container">
-          <div className="single-post-button-container">
-            <AiFillHeart
-              className={`single-post-icons single-post-button ${
-                isLikedPost ? "single-post-liked" : "single-post-unliked"
-              }`}
-              onClick={handleLikeIconClick}
-            />
-            <p className="single-post-button-text font-medium">{likeCount}</p>
-          </div>
-          <div className="single-post-button-container">
-            <BiCommentDetail className="single-post-icons single-post-button" />
-            <p className="single-post-button-text font-medium">
-              {commentCount}
+          <div className="single-post-reply-button-container">
+            <p className="single-post-words-count font-medium">
+              {remainingWords}
             </p>
-          </div>
-          <div className="single-post-button-container">
-            <BsBookmarkFill
-              className={`single-post-icons single-post-button ${
-                isPostBookMarked
-                  ? "single-post-bookmarked"
-                  : "single-post-unbookmarked"
-              }`}
-              onClick={handleBookmarkIconClick}
+            <PrimaryButton
+              buttonText="Reply"
+              onClick={handleReplyClick}
+              isDisabled={replyButtonState.isReplyButtonDisabled}
+              isLoading={replyButtonState.isReplyButtonLoading}
             />
           </div>
-        </div>
 
-        <div className="single-post-reply-box-container">
-          <div className="single-post-avatar-reply-box-container">
-            <FaUserCircle className="single-post-avatar" />
-            <input
-              placeholder="Enter your reply"
-              className="single-post-reply font-medium"
-              value={replyText}
-              onChange={onReplyTextChange}
-            />
-          </div>
+          {postComments?.map((comment: CommentType) => {
+            return (
+              <Comment
+                key={comment._id}
+                userName={comment.username}
+                commentContent={comment.text}
+                commentTime={comment.createdAt}
+              />
+            );
+          })}
         </div>
-        <div className="single-post-reply-button-container">
-          <p className="single-post-words-count font-medium">
-            {remainingWords}
-          </p>
-          <PrimaryButton buttonText="Reply" onClick={handleReplyClick} />
-        </div>
-
-        {postComments?.map((comment: CommentType) => {
-          return (
-            <Comment
-              key={comment._id}
-              userName={comment.username}
-              commentContent={comment.text}
-              commentTime="a month ago"
-            />
-          );
-        })}
-      </div>
+      )}
     </div>
   );
 };
